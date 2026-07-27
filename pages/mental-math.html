@@ -1,615 +1,324 @@
-// 파일 경로: /js/mental-math.js
+<!-- 파일 경로: /pages/mental-math.html -->
 
-/* ==================================================
-   암산연습
-================================================== */
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
 
+  <title>암산연습</title>
 
-/* ================================
-   HTML 요소 가져오기
-================================ */
+  <link
+    rel="stylesheet"
+    href="../css/style.css"
+  />
+</head>
 
-const mentalMathQuestionNumber =
-  document.getElementById(
-    "mental-math-question-number"
-  );
+<body>
 
-const mentalMathCorrectCount =
-  document.getElementById(
-    "mental-math-correct-count"
-  );
+  <!-- ================================
+       공통 상단 메뉴
+  ================================ -->
 
-const mentalMathScore =
-  document.getElementById(
-    "mental-math-score"
-  );
+  <header
+    id="site-header"
+    class="site-header"
+  ></header>
 
-const mentalMathQuestion =
-  document.getElementById(
-    "mental-math-question"
-  );
 
-const mentalMathAnswer =
-  document.getElementById(
-    "mental-math-answer"
-  );
+  <!-- ================================
+       메인 콘텐츠
+  ================================ -->
 
-const mentalMathSubmitButton =
-  document.getElementById(
-    "mental-math-submit-button"
-  );
+  <main>
 
-const mentalMathResult =
-  document.getElementById(
-    "mental-math-result"
-  );
+    <!-- ================================
+         암산연습 소개
+    ================================ -->
 
-const mentalMathNextButton =
-  document.getElementById(
-    "mental-math-next-button"
-  );
+    <section
+      class="card content-section mental-math-section"
+    >
 
-const mentalMathStartButton =
-  document.getElementById(
-    "mental-math-start-button"
-  );
+      <div class="section-heading">
 
+        <p class="hero-label">
+          MENTAL MATH
+        </p>
 
-/* ================================
-   게임 상태
-================================ */
+        <h1>
+          암산연습
+        </h1>
 
-let mentalMathGameRunning =
-  false;
+        <p>
+          빠르고 정확하게 문제를 풀어보세요!
+        </p>
 
-let mentalMathQuestionCount =
-  0;
+      </div>
 
-let mentalMathCorrect =
-  0;
 
-let mentalMathScoreValue =
-  0;
+      <!-- ================================
+           게임 상태
+      ================================ -->
 
-let mentalMathCurrentAnswer =
-  null;
+      <div
+        class="mental-math-status"
+      >
 
-let mentalMathAnswered =
-  false;
+        <div
+          class="mental-math-status-item"
+        >
 
+          <span>
+            문제
+          </span>
 
-/* ================================
-   게임 시작 버튼
-================================ */
+          <strong
+            id="mental-math-question-number"
+          >
+            0
+          </strong>
 
-mentalMathStartButton.addEventListener(
-  "click",
-  function () {
+        </div>
 
-    startMentalMathGame();
 
-  }
-);
+        <div
+          class="mental-math-status-item"
+        >
 
+          <span>
+            정답
+          </span>
 
-/* ================================
-   정답 확인 버튼
-================================ */
+          <strong
+            id="mental-math-correct-count"
+          >
+            0
+          </strong>
 
-mentalMathSubmitButton.addEventListener(
-  "click",
-  function () {
+        </div>
 
-    checkMentalMathAnswer();
 
-  }
-);
+        <div
+          class="mental-math-status-item"
+        >
 
+          <span>
+            점수
+          </span>
 
-/* ================================
-   다음 문제 버튼
-================================ */
+          <strong
+            id="mental-math-score"
+          >
+            0
+          </strong>
+
+        </div>
 
-mentalMathNextButton.addEventListener(
-  "click",
-  function () {
+      </div>
 
-    generateMentalMathQuestion();
 
-  }
-);
+      <!-- ================================
+           문제 영역
+      ================================ -->
 
+      <div
+        class="mental-math-question-card"
+      >
 
-/* ================================
-   Enter 키 입력
-================================ */
+        <p
+          class="mental-math-question-label"
+        >
+          다음 문제의 답을 입력하세요
+        </p>
 
-mentalMathAnswer.addEventListener(
-  "keydown",
-  function (event) {
 
-    if (
-      event.key === "Enter"
-    ) {
+        <div
+          id="mental-math-question"
+          class="mental-math-question"
+        >
+          시작 버튼을 눌러주세요
+        </div>
 
-      event.preventDefault();
 
-      checkMentalMathAnswer();
+        <!-- ================================
+             답 입력
+        ================================ -->
 
-    }
+        <div
+          class="mental-math-answer-area"
+        >
 
-  }
-);
+          <label
+            for="mental-math-answer"
+            class="mental-math-answer-label"
+          >
+            정답
+          </label>
 
+          <input
+            type="number"
+            id="mental-math-answer"
+            class="mental-math-answer-input"
+            placeholder="답을 입력하세요"
+            autocomplete="off"
+            inputmode="numeric"
+          />
 
-/* ==================================================
-   게임 시작
-================================================== */
+          <button
+            type="button"
+            id="mental-math-submit-button"
+            class="mental-math-button"
+          >
+            정답 확인
+          </button>
 
-function startMentalMathGame() {
+        </div>
 
-  mentalMathGameRunning =
-    true;
 
-  mentalMathQuestionCount =
-    0;
+        <!-- ================================
+             결과 표시
+        ================================ -->
 
-  mentalMathCorrect =
-    0;
+        <div
+          id="mental-math-result"
+          class="mental-math-result"
+          aria-live="polite"
+        >
+          문제를 시작하면 결과가 표시됩니다.
+        </div>
 
-  mentalMathScoreValue =
-    0;
 
-  mentalMathCurrentAnswer =
-    null;
+        <!-- ================================
+             다음 문제
+        ================================ -->
 
-  mentalMathAnswered =
-    false;
+        <button
+          type="button"
+          id="mental-math-next-button"
+          class="mental-math-button mental-math-next-button"
+        >
+          다음 문제
+        </button>
 
 
-  mentalMathStartButton.textContent =
-    "다시 시작";
+        <!-- ================================
+             게임 시작 / 재시작
+        ================================ -->
 
+        <button
+          type="button"
+          id="mental-math-start-button"
+          class="mental-math-button mental-math-start-button"
+        >
+          암산연습 시작
+        </button>
 
-  mentalMathSubmitButton.disabled =
-    false;
+      </div>
 
 
-  mentalMathNextButton.disabled =
-    true;
+      <!-- ================================
+           게임 안내
+      ================================ -->
 
+      <div
+        class="mental-math-info"
+      >
 
-  mentalMathAnswer.disabled =
-    false;
+        <h2>
+          암산연습 방법
+        </h2>
 
+        <div
+          class="mental-math-info-grid"
+        >
 
-  updateMentalMathStatus();
+          <div
+            class="mental-math-info-card"
+          >
 
+            <span>
+              1
+            </span>
 
-  mentalMathResult.textContent =
-    "문제를 풀어보세요!";
+            <p>
+              <strong>문제 풀기</strong><br />
+              화면에 표시되는 계산 문제를 확인하세요.
+            </p>
 
+          </div>
 
-  mentalMathResult.className =
-    "mental-math-result";
 
+          <div
+            class="mental-math-info-card"
+          >
 
-  generateMentalMathQuestion();
+            <span>
+              2
+            </span>
 
-}
+            <p>
+              <strong>답 입력</strong><br />
+              계산한 답을 입력하고 정답 확인을 누르세요.
+            </p>
 
+          </div>
 
-/* ==================================================
-   문제 생성
-================================================== */
 
-function generateMentalMathQuestion() {
+          <div
+            class="mental-math-info-card"
+          >
 
-  if (
-    !mentalMathGameRunning
-  ) {
+            <span>
+              3
+            </span>
 
-    return;
+            <p>
+              <strong>다음 문제</strong><br />
+              결과를 확인한 후 다음 문제에 도전하세요.
+            </p>
 
-  }
+          </div>
 
 
-  mentalMathAnswered =
-    false;
+          <div
+            class="mental-math-info-card"
+          >
 
+            <span>
+              4
+            </span>
 
-  mentalMathQuestionCount +=
-    1;
+            <p>
+              <strong>키보드 사용</strong><br />
+              답을 입력한 뒤 Enter 키로 정답을 제출할 수 있습니다.
+            </p>
 
+          </div>
 
-  mentalMathSubmitButton.disabled =
-    false;
+        </div>
 
+      </div>
 
-  mentalMathNextButton.disabled =
-    true;
+    </section>
 
+  </main>
 
-  mentalMathAnswer.disabled =
-    false;
 
+  <!-- ================================
+       공통 메뉴 및 암산연습 JavaScript
+  ================================ -->
 
-  mentalMathAnswer.value =
-    "";
+  <script
+    src="../js/header.js"
+  ></script>
 
+  <script
+    src="../js/mental-math.js"
+  ></script>
 
-  const problem =
-    createMentalMathProblem();
-
-
-  mentalMathCurrentAnswer =
-    problem.answer;
-
-
-  mentalMathQuestion.textContent =
-    problem.question;
-
-
-  mentalMathResult.textContent =
-    "정답을 입력하고 확인해보세요.";
-
-
-  mentalMathResult.className =
-    "mental-math-result";
-
-
-  updateMentalMathStatus();
-
-
-  mentalMathAnswer.focus();
-
-}
-
-
-/* ==================================================
-   랜덤 문제 생성
-================================================== */
-
-function createMentalMathProblem() {
-
-  const operations = [
-
-    "+",
-
-    "-",
-
-    "×",
-
-    "÷"
-
-  ];
-
-
-  const operation =
-    operations[
-      Math.floor(
-        Math.random() *
-        operations.length
-      )
-    ];
-
-
-  let firstNumber;
-
-  let secondNumber;
-
-  let answer;
-
-
-  /* ================================
-     덧셈
-  ================================ */
-
-  if (
-    operation === "+"
-  ) {
-
-    firstNumber =
-      getRandomInteger(
-        1,
-        99
-      );
-
-    secondNumber =
-      getRandomInteger(
-        1,
-        99
-      );
-
-    answer =
-      firstNumber +
-      secondNumber;
-
-  }
-
-
-  /* ================================
-     뺄셈
-  ================================ */
-
-  else if (
-    operation === "-"
-  ) {
-
-    firstNumber =
-      getRandomInteger(
-        1,
-        99
-      );
-
-    secondNumber =
-      getRandomInteger(
-        1,
-        firstNumber
-      );
-
-    answer =
-      firstNumber -
-      secondNumber;
-
-  }
-
-
-  /* ================================
-     곱셈
-  ================================ */
-
-  else if (
-    operation === "×"
-  ) {
-
-    firstNumber =
-      getRandomInteger(
-        2,
-        20
-      );
-
-    secondNumber =
-      getRandomInteger(
-        2,
-        12
-      );
-
-    answer =
-      firstNumber *
-      secondNumber;
-
-  }
-
-
-  /* ================================
-     나눗셈
-  ================================ */
-
-  else {
-
-    secondNumber =
-      getRandomInteger(
-        2,
-        12
-      );
-
-    answer =
-      getRandomInteger(
-        1,
-        20
-      );
-
-    firstNumber =
-      secondNumber *
-      answer;
-
-  }
-
-
-  return {
-
-    question:
-      firstNumber +
-      " " +
-      operation +
-      " " +
-      secondNumber +
-      " = ?",
-
-
-    answer:
-      answer
-
-  };
-
-}
-
-
-/* ==================================================
-   정답 확인
-================================================== */
-
-function checkMentalMathAnswer() {
-
-  if (
-    !mentalMathGameRunning
-  ) {
-
-    return;
-
-  }
-
-
-  if (
-    mentalMathAnswered
-  ) {
-
-    return;
-
-  }
-
-
-  if (
-    mentalMathAnswer.value.trim() === ""
-  ) {
-
-    mentalMathResult.textContent =
-      "답을 입력해주세요.";
-
-
-    mentalMathResult.className =
-      "mental-math-result mental-math-warning";
-
-
-    mentalMathAnswer.focus();
-
-    return;
-
-  }
-
-
-  const userAnswer =
-    Number(
-      mentalMathAnswer.value
-    );
-
-
-  mentalMathAnswered =
-    true;
-
-
-  mentalMathSubmitButton.disabled =
-    true;
-
-
-  mentalMathNextButton.disabled =
-    true;
-
-
-  mentalMathAnswer.disabled =
-    true;
-
-
-  if (
-    userAnswer ===
-    mentalMathCurrentAnswer
-  ) {
-
-    mentalMathCorrect +=
-      1;
-
-
-    mentalMathScoreValue +=
-      100;
-
-
-    mentalMathResult.innerHTML =
-      "정답입니다!<br>" +
-      "현재 정답 수: <strong>" +
-      mentalMathCorrect +
-      "</strong>개";
-
-
-    mentalMathResult.className =
-      "mental-math-result mental-math-correct";
-
-  }
-
-  else {
-
-    mentalMathResult.innerHTML =
-      "아쉽습니다.<br>" +
-      "정답은 <strong>" +
-      mentalMathCurrentAnswer +
-      "</strong>입니다.";
-
-
-    mentalMathResult.className =
-      "mental-math-result mental-math-wrong";
-
-  }
-
-
-  updateMentalMathStatus();
-
-
-  /* ================================
-     자동으로 다음 문제
-  ================================ */
-
-  setTimeout(
-    function () {
-
-      generateMentalMathQuestion();
-
-    },
-    800
-  );
-
-}
-
-
-/* ==================================================
-   상태 표시 업데이트
-================================================== */
-
-function updateMentalMathStatus() {
-
-  mentalMathQuestionNumber.textContent =
-    mentalMathQuestionCount;
-
-
-  mentalMathCorrectCount.textContent =
-    mentalMathCorrect;
-
-
-  mentalMathScore.textContent =
-    mentalMathScoreValue;
-
-}
-
-
-/* ==================================================
-   랜덤 정수 생성
-================================================== */
-
-function getRandomInteger(
-  min,
-  max
-) {
-
-  return Math.floor(
-
-    Math.random() *
-    (
-      max -
-      min +
-      1
-    )
-
-    +
-    min
-
-  );
-
-}
-
-
-/* ==================================================
-   초기 화면
-=============================================== */
-
-updateMentalMathStatus();
-
-
-mentalMathSubmitButton.disabled =
-  true;
-
-
-mentalMathNextButton.disabled =
-  true;
-
-
-mentalMathAnswer.disabled =
-  true;
+</body>
+</html>
