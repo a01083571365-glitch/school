@@ -1,0 +1,3017 @@
+/* 파일 경로: /css/style.css */
+
+/* ================================
+   기본 설정
+================================ */
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+
+  font-family:
+    "Malgun Gothic",
+    "맑은 고딕",
+    Arial,
+    sans-serif;
+
+  color: #16445a;
+
+  background:
+    linear-gradient(
+      180deg,
+      #eafaff 0%,
+      #f7fdff 45%,
+      #ffffff 100%
+    );
+}
+
+/* ================================
+   공통 상단 메뉴
+================================ */
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+
+  width: 100%;
+
+  background: rgba(255, 255, 255, 0.94);
+
+  border-bottom:
+    1px solid
+    rgba(69, 180, 205, 0.25);
+
+  box-shadow:
+    0 4px 18px
+    rgba(31, 130, 160, 0.1);
+
+  backdrop-filter: blur(10px);
+}
+
+.site-nav {
+  width: 100%;
+  max-width: 1200px;
+
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.main-menu {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 8px;
+
+  margin: 0;
+  padding: 10px 0;
+
+  list-style: none;
+}
+
+.menu-item {
+  position: relative;
+}
+
+.menu-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 44px;
+
+  padding: 10px 18px;
+
+  border: none;
+  border-radius: 14px;
+
+  color: #176078;
+  background: transparent;
+
+  font: inherit;
+  font-size: 15px;
+  font-weight: 700;
+
+  line-height: 1.2;
+  text-decoration: none;
+
+  cursor: pointer;
+
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.menu-link:hover,
+.menu-link:focus-visible {
+  color: #ffffff;
+
+  background:
+    linear-gradient(
+      135deg,
+      #35b7c9,
+      #42c9c5
+    );
+
+  outline: none;
+
+  box-shadow:
+    0 5px 12px
+    rgba(53, 183, 201, 0.2);
+}
+
+.menu-link:active {
+  transform: translateY(1px);
+}
+
+/* ================================
+   하위 메뉴
+================================ */
+
+.submenu {
+  position: absolute;
+
+  top: calc(100% + 8px);
+  left: 50%;
+
+  min-width: 190px;
+
+  margin: 0;
+  padding: 8px;
+
+  border:
+    1px solid
+    rgba(53, 183, 201, 0.2);
+
+  border-radius: 16px;
+
+  background:
+    rgba(255, 255, 255, 0.98);
+
+  box-shadow:
+    0 10px 28px
+    rgba(31, 130, 160, 0.16);
+
+  list-style: none;
+
+  opacity: 0;
+  visibility: hidden;
+
+  transform:
+    translate(-50%, -8px);
+
+  transition:
+    opacity 0.2s ease,
+    visibility 0.2s ease,
+    transform 0.2s ease;
+}
+
+.submenu-item {
+  margin: 0;
+  padding: 0;
+}
+
+.submenu-link {
+  display: block;
+
+  width: 100%;
+
+  padding: 11px 14px;
+
+  border-radius: 10px;
+
+  color: #24657a;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  line-height: 1.4;
+  text-align: left;
+
+  text-decoration: none;
+  white-space: nowrap;
+
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.submenu-link:hover,
+.submenu-link:focus-visible {
+  color: #ffffff;
+
+  background:
+    linear-gradient(
+      135deg,
+      #55c5d3,
+      #48c4b8
+    );
+
+  outline: none;
+
+  transform: translateX(2px);
+}
+
+.menu-dropdown.is-hover .submenu {
+  opacity: 1;
+  visibility: visible;
+
+  transform:
+    translate(-50%, 0);
+}
+
+.menu-dropdown.is-open .submenu {
+  opacity: 1;
+  visibility: visible;
+
+  transform:
+    translate(-50%, 0);
+}
+
+.menu-dropdown.is-open > .menu-toggle {
+  color: #ffffff;
+
+  background:
+    linear-gradient(
+      135deg,
+      #35b7c9,
+      #42c9c5
+    );
+}
+
+/* ================================
+   메인 콘텐츠
+================================ */
+
+main {
+  width: 100%;
+  max-width: 1200px;
+
+  margin: 0 auto;
+
+  padding:
+    40px 20px 70px;
+}
+
+/* ================================
+   공통 카드
+================================ */
+
+.card {
+  border:
+    1px solid
+    rgba(53, 183, 201, 0.18);
+
+  border-radius: 20px;
+
+  background:
+    rgba(255, 255, 255, 0.9);
+
+  box-shadow:
+    0 8px 24px
+    rgba(31, 130, 160, 0.08);
+}
+
+/* ================================
+   메인 환영 영역
+================================ */
+
+.hero-section {
+  position: relative;
+
+  overflow: hidden;
+
+  margin-bottom: 55px;
+
+  padding:
+    70px 30px;
+
+  text-align: center;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.96),
+      rgba(224, 249, 255, 0.96)
+    );
+
+  box-shadow:
+    0 12px 35px
+    rgba(31, 130, 160, 0.1);
+}
+
+.hero-section::before {
+  content: "";
+
+  position: absolute;
+
+  width: 180px;
+  height: 180px;
+
+  top: -90px;
+  right: -50px;
+
+  border-radius: 50%;
+
+  background:
+    rgba(84, 204, 216, 0.16);
+}
+
+.hero-section::after {
+  content: "";
+
+  position: absolute;
+
+  width: 130px;
+  height: 130px;
+
+  bottom: -70px;
+  left: -40px;
+
+  border-radius: 50%;
+
+  background:
+    rgba(67, 194, 184, 0.12);
+}
+
+.hero-label {
+  position: relative;
+  z-index: 1;
+
+  margin:
+    0 0 12px;
+
+  color: #35aabd;
+
+  font-size: 13px;
+  font-weight: 800;
+
+  letter-spacing: 4px;
+}
+
+.hero-section h1 {
+  position: relative;
+  z-index: 1;
+
+  margin: 0;
+
+  color: #15536c;
+
+  font-size:
+    clamp(30px, 5vw, 48px);
+
+  line-height: 1.3;
+}
+
+.hero-description {
+  position: relative;
+  z-index: 1;
+
+  max-width: 650px;
+
+  margin:
+    20px auto 0;
+
+  color: #527582;
+
+  font-size: 16px;
+
+  line-height: 1.8;
+}
+
+/* ================================
+   콘텐츠 영역
+================================ */
+
+.content-section {
+  margin-bottom: 55px;
+}
+
+.section-heading {
+  margin-bottom: 25px;
+
+  text-align: center;
+}
+
+.section-heading h2 {
+  margin:
+    0 0 10px;
+
+  color: #176078;
+
+  font-size: 30px;
+
+  line-height: 1.3;
+}
+
+.section-heading p {
+  margin: 0;
+
+  color: #668692;
+
+  font-size: 15px;
+
+  line-height: 1.7;
+}
+
+/* ================================
+   카드 그리드
+================================ */
+
+.card-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr));
+
+  gap: 22px;
+}
+
+/* ================================
+   게임·공부 카드
+================================ */
+
+.feature-card {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+
+  min-height: 280px;
+
+  padding: 30px;
+
+  color: inherit;
+
+  text-decoration: none;
+
+  overflow: hidden;
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    border-color 0.25s ease;
+}
+
+.feature-card:hover {
+  transform:
+    translateY(-7px);
+
+  border-color:
+    rgba(53, 183, 201, 0.4);
+
+  box-shadow:
+    0 16px 35px
+    rgba(31, 130, 160, 0.16);
+}
+
+.feature-card:active {
+  transform:
+    translateY(-3px);
+}
+
+.feature-card::after {
+  content: "";
+
+  position: absolute;
+
+  width: 120px;
+  height: 120px;
+
+  right: -45px;
+  bottom: -50px;
+
+  border-radius: 50%;
+
+  background:
+    rgba(53, 183, 201, 0.08);
+
+  transition:
+    transform 0.3s ease;
+}
+
+.feature-card:hover::after {
+  transform:
+    scale(1.4);
+}
+
+.feature-icon {
+  position: relative;
+  z-index: 1;
+
+  display: block;
+
+  margin-bottom: 18px;
+
+  font-size: 42px;
+
+  line-height: 1;
+}
+
+.feature-card h3 {
+  position: relative;
+  z-index: 1;
+
+  margin:
+    0 0 10px;
+
+  color: #176078;
+
+  font-size: 22px;
+
+  line-height: 1.4;
+}
+
+.feature-card p {
+  position: relative;
+  z-index: 1;
+
+  margin:
+    0 0 25px;
+
+  color: #5e7d88;
+
+  font-size: 15px;
+
+  line-height: 1.7;
+}
+
+.feature-button {
+  position: relative;
+  z-index: 1;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  align-self: flex-start;
+
+  min-height: 42px;
+
+  margin-top: auto;
+
+  padding:
+    10px 18px;
+
+  border-radius: 12px;
+
+  color: #ffffff;
+
+  background:
+    linear-gradient(
+      135deg,
+      #35b7c9,
+      #42c9c5
+    );
+
+  font-size: 14px;
+  font-weight: 700;
+
+  box-shadow:
+    0 5px 12px
+    rgba(53, 183, 201, 0.2);
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.feature-card:hover .feature-button {
+  transform:
+    translateY(-2px);
+
+  box-shadow:
+    0 8px 16px
+    rgba(53, 183, 201, 0.28);
+}
+
+/* ================================
+   안내 영역
+================================ */
+
+.info-section {
+  padding:
+    32px 25px;
+
+  text-align: center;
+}
+
+.info-section h2 {
+  margin:
+    0 0 12px;
+
+  color: #176078;
+
+  font-size: 23px;
+
+  line-height: 1.4;
+}
+
+.info-section p {
+  max-width: 650px;
+
+  margin: 0 auto;
+
+  color: #668692;
+
+  font-size: 15px;
+
+  line-height: 1.8;
+}
+
+
+/* ==================================================
+   가위바위보 게임 전용 디자인
+================================================== */
+
+/* ================================
+   게임 전체 영역
+================================ */
+
+.rps-game-section {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 40px;
+}
+
+
+/* ================================
+   플레이어와 컴퓨터
+================================ */
+
+.rps-result-area {
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 1fr)
+    auto
+    minmax(0, 1fr);
+
+  align-items: center;
+
+  gap: 30px;
+
+  width: 100%;
+}
+
+
+.rps-player {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  min-width: 0;
+
+  padding: 30px 20px;
+
+  border:
+    1px solid
+    rgba(53, 183, 201, 0.18);
+
+  border-radius: 18px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #ffffff,
+      #f0fbfd
+    );
+
+  box-shadow:
+    0 6px 18px
+    rgba(31, 130, 160, 0.07);
+}
+
+
+.rps-player h2 {
+  margin:
+    0 0 18px;
+
+  color: #176078;
+
+  font-size: 22px;
+}
+
+
+/* ================================
+   선택 결과
+================================ */
+
+.rps-choice-display {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 120px;
+  height: 120px;
+
+  margin-bottom: 15px;
+
+  border-radius: 50%;
+
+  color: #176078;
+
+  background:
+    linear-gradient(
+      135deg,
+      #e5faff,
+      #ffffff
+    );
+
+  font-size: 55px;
+
+  box-shadow:
+    inset 0 0 0 1px
+    rgba(53, 183, 201, 0.15);
+}
+
+
+/* 선택 결과 등장 애니메이션 */
+
+.rps-choice-animation {
+  animation:
+    rpsChoicePop
+    0.45s
+    ease-out;
+}
+
+
+@keyframes rpsChoicePop {
+
+  0% {
+    opacity: 0;
+
+    transform:
+      scale(0.55)
+      rotate(-12deg);
+  }
+
+  60% {
+    opacity: 1;
+
+    transform:
+      scale(1.12)
+      rotate(4deg);
+  }
+
+  100% {
+    opacity: 1;
+
+    transform:
+      scale(1)
+      rotate(0deg);
+  }
+
+}
+
+
+.rps-player p {
+  min-height: 24px;
+
+  margin: 0;
+
+  color: #668692;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  text-align: center;
+}
+
+
+/* ================================
+   VS
+================================ */
+
+.rps-vs {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 60px;
+  height: 60px;
+
+  border-radius: 50%;
+
+  color: #ffffff;
+
+  background:
+    linear-gradient(
+      135deg,
+      #35b7c9,
+      #42c9c5
+    );
+
+  font-size: 17px;
+  font-weight: 800;
+
+  box-shadow:
+    0 6px 15px
+    rgba(53, 183, 201, 0.22);
+}
+
+
+/* ================================
+   게임 결과
+================================ */
+
+.rps-game-result {
+  margin:
+    35px 0 25px;
+
+  padding:
+    18px 20px;
+
+  border:
+    1px solid
+    rgba(53, 183, 201, 0.12);
+
+  border-radius: 14px;
+
+  color: #176078;
+
+  background:
+    #effcff;
+
+  font-size: 17px;
+  font-weight: 700;
+
+  text-align: center;
+
+  transition:
+    color 0.2s ease,
+    background-color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+
+/* 결과 등장 애니메이션 */
+
+.rps-result-animation {
+  animation:
+    rpsResultPop
+    0.45s
+    ease-out;
+}
+
+
+@keyframes rpsResultPop {
+
+  0% {
+    opacity: 0;
+
+    transform:
+      translateY(8px)
+      scale(0.96);
+  }
+
+  70% {
+    opacity: 1;
+
+    transform:
+      translateY(-2px)
+      scale(1.02);
+  }
+
+  100% {
+    opacity: 1;
+
+    transform:
+      translateY(0)
+      scale(1);
+  }
+
+}
+
+
+/* ================================
+   승리·패배·무승부 상태
+================================ */
+
+.rps-game-result.rps-win {
+  color: #08765e;
+
+  background:
+    #e8faf5;
+
+  border-color:
+    rgba(32, 170, 135, 0.25);
+}
+
+
+.rps-game-result.rps-lose {
+  color: #a04e5a;
+
+  background:
+    #fff0f3;
+
+  border-color:
+    rgba(210, 103, 120, 0.25);
+}
+
+
+.rps-game-result.rps-draw {
+  color: #6a657e;
+
+  background:
+    #f3f1fa;
+
+  border-color:
+    rgba(125, 116, 160, 0.2);
+}
+
+
+/* ================================
+   선택 버튼 영역
+================================ */
+
+.rps-button-area {
+  display: grid;
+
+  grid-template-columns:
+    repeat(3, minmax(0, 1fr));
+
+  gap: 15px;
+
+  width: 100%;
+
+  margin-bottom: 35px;
+}
+
+
+/* ================================
+   선택 버튼
+================================ */
+
+.rps-choice-button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 125px;
+
+  padding: 18px;
+
+  border:
+    2px solid
+    rgba(53, 183, 201, 0.2);
+
+  border-radius: 18px;
+
+  color: #176078;
+
+  background:
+    #ffffff;
+
+  font-family: inherit;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.2s ease,
+    border-color 0.2s ease,
+    background-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+
+/* 버튼 내부 이모지 */
+
+.rps-choice-button > span:first-child {
+  font-size: 38px;
+
+  line-height: 1;
+}
+
+
+/* 버튼 내부 글자 */
+
+.rps-choice-button > span:last-child {
+  display: block;
+
+  margin-top: 10px;
+
+  font-size: 15px;
+  font-weight: 700;
+}
+
+
+/* 마우스를 올렸을 때 */
+
+.rps-choice-button:hover {
+  transform:
+    translateY(-5px);
+
+  border-color:
+    rgba(53, 183, 201, 0.55);
+
+  background:
+    #f2fdff;
+
+  box-shadow:
+    0 10px 22px
+    rgba(31, 130, 160, 0.12);
+}
+
+
+/* 클릭했을 때 */
+
+.rps-choice-button:active {
+  transform:
+    translateY(-1px)
+    scale(0.98);
+}
+
+
+/* 선택된 버튼 */
+
+.rps-choice-button.rps-selected {
+  color: #ffffff;
+
+  border-color:
+    #35b7c9;
+
+  background:
+    linear-gradient(
+      135deg,
+      #35b7c9,
+      #42c9c5
+    );
+
+  box-shadow:
+    0 9px 22px
+    rgba(53, 183, 201, 0.28);
+
+  transform:
+    translateY(-4px);
+}
+
+
+/* 선택된 버튼의 이모지 */
+
+.rps-choice-button.rps-selected
+> span:first-child {
+  animation:
+    rpsSelectedBounce
+    0.4s
+    ease-out;
+}
+
+
+@keyframes rpsSelectedBounce {
+
+  0% {
+    transform:
+      scale(0.8);
+  }
+
+  60% {
+    transform:
+      scale(1.2)
+      rotate(5deg);
+  }
+
+  100% {
+    transform:
+      scale(1)
+      rotate(0);
+  }
+
+}
+
+
+/* 키보드 접근성 */
+
+.rps-choice-button:focus-visible {
+  outline:
+    3px solid
+    rgba(53, 183, 201, 0.35);
+
+  outline-offset:
+    3px;
+}
+
+
+/* ================================
+   점수판
+================================ */
+
+.rps-score-board {
+  display: grid;
+
+  grid-template-columns:
+    repeat(3, minmax(0, 1fr));
+
+  gap: 12px;
+
+  width: 100%;
+
+  padding-top: 25px;
+
+  border-top:
+    1px solid
+    rgba(53, 183, 201, 0.15);
+}
+
+
+.rps-score-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 85px;
+
+  padding: 15px;
+
+  border-radius: 14px;
+
+  background:
+    #f5fcfd;
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+
+.rps-score-item:hover {
+  transform:
+    translateY(-2px);
+
+  box-shadow:
+    0 6px 15px
+    rgba(31, 130, 160, 0.08);
+}
+
+
+.rps-score-item span {
+  margin-bottom: 7px;
+
+  color: #668692;
+
+  font-size: 14px;
+  font-weight: 600;
+}
+
+
+.rps-score-item strong {
+  color: #176078;
+
+  font-size: 25px;
+}
+
+
+/* ================================
+   전적 초기화 버튼
+================================ */
+
+.rps-reset-button {
+  display: block;
+
+  margin:
+    25px auto 0;
+
+  min-height: 42px;
+
+  padding:
+    10px 22px;
+
+  border:
+    1px solid
+    rgba(53, 183, 201, 0.3);
+
+  border-radius: 12px;
+
+  color: #527582;
+
+  background:
+    #ffffff;
+
+  font-family: inherit;
+
+  font-size: 14px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition:
+    color 0.2s ease,
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+
+.rps-reset-button:hover {
+  color: #ffffff;
+
+  border-color:
+    #35b7c9;
+
+  background:
+    linear-gradient(
+      135deg,
+      #35b7c9,
+      #42c9c5
+    );
+
+  transform:
+    translateY(-2px);
+
+  box-shadow:
+    0 7px 16px
+    rgba(53, 183, 201, 0.2);
+}
+
+
+.rps-reset-button:active {
+  transform:
+    translateY(0)
+    scale(0.98);
+}
+
+
+.rps-reset-button:focus-visible {
+  outline:
+    3px solid
+    rgba(53, 183, 201, 0.35);
+
+  outline-offset:
+    3px;
+}
+
+
+/* ==================================================
+   갤로그게임 - 탄막 슈팅 게임 전용 디자인
+================================================== */
+
+/* ================================
+   게임 전체 영역
+================================ */
+
+.gallery-game-section {
+  width: 100%;
+  max-width: 1100px;
+
+  margin: 0 auto;
+}
+
+
+/* ================================
+   게임 상태 표시
+================================ */
+
+.gallery-game-status {
+  display: grid;
+
+  grid-template-columns:
+    repeat(3, minmax(0, 1fr));
+
+  gap: 14px;
+
+  width: 100%;
+  max-width: 900px;
+
+  margin:
+    0 auto 20px;
+}
+
+.gallery-game-status-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 75px;
+
+  padding: 12px 20px;
+
+  border:
+    1px solid
+    rgba(53, 183, 201, 0.18);
+
+  border-radius: 16px;
+
+  background:
+    rgba(255, 255, 255, 0.9);
+
+  box-shadow:
+    0 6px 18px
+    rgba(31, 130, 160, 0.08);
+}
+
+.gallery-game-status-item span {
+  margin-bottom: 5px;
+
+  color: #668692;
+
+  font-size: 12px;
+  font-weight: 800;
+
+  letter-spacing: 1px;
+}
+
+.gallery-game-status-item strong {
+  color: #176078;
+
+  font-size: 22px;
+  font-weight: 800;
+}
+
+
+/* ================================
+   게임 화면 + 게임 방법
+================================ */
+
+.gallery-game-layout {
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 600px)
+    minmax(280px, 1fr);
+
+  align-items: start;
+
+  gap: 24px;
+
+  width: 100%;
+}
+
+
+/* ================================
+   Canvas 게임 영역
+================================ */
+
+.gallery-game-canvas-wrapper {
+  position: relative;
+
+  width: 100%;
+
+  overflow: hidden;
+
+  border:
+    2px solid
+    rgba(53, 183, 201, 0.3);
+
+  border-radius: 22px;
+
+  background:
+    #eafaff;
+
+  box-shadow:
+    0 12px 35px
+    rgba(31, 130, 160, 0.14);
+}
+
+#gallery-game-canvas {
+  display: block;
+
+  width: 100%;
+  height: auto;
+
+  background:
+    linear-gradient(
+      180deg,
+      #dff8ff 0%,
+      #f5fdff 50%,
+      #eafaff 100%
+    );
+}
+
+
+/* ================================
+   게임 오버레이
+================================ */
+
+.gallery-game-overlay {
+  position: absolute;
+
+  inset: 0;
+
+  z-index: 10;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 24px;
+
+  background:
+    rgba(15, 78, 100, 0.3);
+
+  backdrop-filter:
+    blur(5px);
+}
+
+.gallery-game-hidden {
+  display: none;
+}
+
+
+/* ================================
+   오버레이 카드
+================================ */
+
+.gallery-game-overlay-card {
+  width: min(90%, 390px);
+
+  padding:
+    30px 26px;
+
+  border:
+    1px solid
+    rgba(53, 183, 201, 0.25);
+
+  border-radius: 22px;
+
+  background:
+    rgba(255, 255, 255, 0.96);
+
+  box-shadow:
+    0 15px 40px
+    rgba(31, 130, 160, 0.2);
+
+  text-align: center;
+}
+
+.gallery-game-overlay-card h2 {
+  margin:
+    0 0 14px;
+
+  color: #176078;
+
+  font-size: 27px;
+
+  line-height: 1.3;
+}
+
+.gallery-game-overlay-card p {
+  margin:
+    8px 0;
+
+  color: #5e7d88;
+
+  font-size: 14px;
+
+  line-height: 1.7;
+}
+
+.gallery-game-overlay-card strong {
+  color: #176078;
+}
+
+
+/* ================================
+   시작 화면 조작법
+================================ */
+
+.gallery-game-controls {
+  display: grid;
+
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr));
+
+  gap: 8px;
+
+  margin:
+    20px 0;
+}
+
+.gallery-game-controls p {
+  margin: 0;
+
+  padding:
+    9px 8px;
+
+  border-radius: 10px;
+
+  color: #4f7482;
+
+  background:
+    #eefbfe;
+
+  font-size: 12px;
+
+  line-height: 1.4;
+}
+
+
+/* ================================
+   게임 버튼
+================================ */
+
+.gallery-game-button {
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  min-width: 150px;
+  min-height: 44px;
+
+  padding:
+    10px 22px;
+
+  border: none;
+
+  border-radius: 12px;
+
+  color: #ffffff;
+
+  background:
+    linear-gradient(
+      135deg,
+      #35b7c9,
+      #42c9c5
+    );
+
+  font-family: inherit;
+
+  font-size: 14px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 6px 16px
+    rgba(53, 183, 201, 0.2);
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    filter 0.2s ease;
+}
+
+.gallery-game-button:hover {
+  transform:
+    translateY(-3px);
+
+  filter:
+    brightness(1.04);
+
+  box-shadow:
+    0 9px 22px
+    rgba(53, 183, 201, 0.28);
+}
+
+.gallery-game-button:active {
+  transform:
+    translateY(0)
+    scale(0.98);
+}
+
+.gallery-game-button:focus-visible {
+  outline:
+    3px solid
+    rgba(53, 183, 201, 0.35);
+
+  outline-offset:
+    3px;
+}
+
+
+/* ================================
+   게임 방법
+================================ */
+
+.gallery-game-description {
+  width: 100%;
+
+  padding:
+    24px;
+
+  border:
+    1px solid
+    rgba(53, 183, 201, 0.18);
+
+  border-radius: 22px;
+
+  background:
+    rgba(255, 255, 255, 0.9);
+
+  box-shadow:
+    0 10px 28px
+    rgba(31, 130, 160, 0.09);
+}
+
+.gallery-game-description-header {
+  margin-bottom: 18px;
+}
+
+.gallery-game-description-header h2 {
+  margin:
+    0 0 7px;
+
+  color: #176078;
+
+  font-size: 22px;
+
+  line-height: 1.4;
+}
+
+.gallery-game-description-header p {
+  margin: 0;
+
+  color: #668692;
+
+  font-size: 13px;
+
+  line-height: 1.6;
+}
+
+
+/* ================================
+   게임 방법 카드
+================================ */
+
+.gallery-game-description-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr));
+
+  gap: 10px;
+}
+
+.gallery-game-description-card {
+  display: flex;
+  flex-direction: column;
+
+  min-height: 135px;
+
+  padding:
+    15px;
+
+  border:
+    1px solid
+    rgba(53, 183, 201, 0.12);
+
+  border-radius: 14px;
+
+  background:
+    #f5fcfe;
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    background-color 0.2s ease;
+}
+
+.gallery-game-description-card:hover {
+  transform:
+    translateY(-3px);
+
+  background:
+    #ffffff;
+
+  box-shadow:
+    0 7px 18px
+    rgba(31, 130, 160, 0.1);
+}
+
+.gallery-game-description-icon {
+  display: block;
+
+  margin-bottom: 10px;
+
+  font-size: 24px;
+
+  line-height: 1;
+}
+
+.gallery-game-description-card strong {
+  display: block;
+
+  margin-bottom: 5px;
+
+  color: #176078;
+
+  font-size: 14px;
+}
+
+.gallery-game-description-card p {
+  margin: 0;
+
+  color: #668692;
+
+  font-size: 12px;
+
+  line-height: 1.6;
+}
+
+
+/* ==================================================
+   암산연습 전용 디자인
+================================================== */
+
+/* ================================
+   암산연습 전체 영역
+================================ */
+
+.mental-math-section {
+  width: 100%;
+  max-width: 900px;
+
+  margin:
+    0 auto;
+}
+
+
+/* ================================
+   암산연습 상태 표시
+================================ */
+
+.mental-math-status {
+  display: grid;
+
+  grid-template-columns:
+    repeat(3, minmax(0, 1fr));
+
+  gap: 14px;
+
+  width: 100%;
+
+  margin:
+    0 auto 24px;
+}
+
+.mental-math-status-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 85px;
+
+  padding:
+    14px 18px;
+
+  border:
+    1px solid
+    rgba(53, 183, 201, 0.18);
+
+  border-radius: 16px;
+
+  background:
+    rgba(255, 255, 255, 0.92);
+
+  box-shadow:
+    0 6px 18px
+    rgba(31, 130, 160, 0.08);
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.mental-math-status-item:hover {
+  transform:
+    translateY(-2px);
+
+  box-shadow:
+    0 9px 20px
+    rgba(31, 130, 160, 0.11);
+}
+
+.mental-math-status-item span {
+  margin-bottom: 6px;
+
+  color: #668692;
+
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.mental-math-status-item strong {
+  color: #176078;
+
+  font-size: 26px;
+  font-weight: 800;
+}
+
+
+/* ================================
+   문제 카드
+================================ */
+
+.mental-math-question-card {
+  width: 100%;
+
+  padding:
+    35px 30px;
+
+  border:
+    1px solid
+    rgba(53, 183, 201, 0.2);
+
+  border-radius: 22px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.98),
+      rgba(239, 251, 253, 0.96)
+    );
+
+  box-shadow:
+    0 12px 30px
+    rgba(31, 130, 160, 0.1);
+
+  text-align: center;
+}
+
+
+/* ================================
+   문제 안내 문구
+================================ */
+
+.mental-math-question-label {
+  margin:
+    0 0 15px;
+
+  color: #668692;
+
+  font-size: 14px;
+  font-weight: 700;
+
+  line-height: 1.6;
+}
+
+
+/* ================================
+   문제
+================================ */
+
+.mental-math-question {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 105px;
+
+  margin:
+    0 auto 28px;
+
+  padding:
+    20px;
+
+  border:
+    1px solid
+    rgba(53, 183, 201, 0.16);
+
+  border-radius: 18px;
+
+  color: #15536c;
+
+  background:
+    #ffffff;
+
+  font-size:
+    clamp(30px, 6vw, 48px);
+
+  font-weight: 800;
+
+  line-height: 1.3;
+
+  box-shadow:
+    inset 0 0 0 1px
+    rgba(53, 183, 201, 0.05);
+}
+
+
+/* ================================
+   답 입력 영역
+================================ */
+
+.mental-math-answer-area {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 10px;
+
+  width: 100%;
+
+  margin:
+    0 auto 20px;
+}
+
+.mental-math-answer-label {
+  color: #176078;
+
+  font-size: 14px;
+  font-weight: 700;
+
+  white-space: nowrap;
+}
+
+.mental-math-answer-input {
+  width: 220px;
+
+  min-height: 48px;
+
+  padding:
+    10px 15px;
+
+  border:
+    2px solid
+    rgba(53, 183, 201, 0.22);
+
+  border-radius: 12px;
+
+  color: #176078;
+
+  background:
+    #ffffff;
+
+  font-family: inherit;
+
+  font-size: 17px;
+  font-weight: 700;
+
+  text-align: center;
+
+  outline: none;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    background-color 0.2s ease;
+}
+
+.mental-math-answer-input::placeholder {
+  color: #9ab0b8;
+
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.mental-math-answer-input:hover {
+  border-color:
+    rgba(53, 183, 201, 0.4);
+}
+
+.mental-math-answer-input:focus {
+  border-color:
+    #35b7c9;
+
+  background:
+    #f8feff;
+
+  box-shadow:
+    0 0 0 4px
+    rgba(53, 183, 201, 0.12);
+}
+
+
+/* ================================
+   공통 암산연습 버튼
+================================ */
+
+.mental-math-button {
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  min-height: 46px;
+
+  padding:
+    10px 22px;
+
+  border:
+    1px solid
+    rgba(53, 183, 201, 0.2);
+
+  border-radius: 12px;
+
+  color: #ffffff;
+
+  background:
+    linear-gradient(
+      135deg,
+      #35b7c9,
+      #42c9c5
+    );
+
+  font-family: inherit;
+
+  font-size: 14px;
+  font-weight: 700;
+
+  line-height: 1.3;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 6px 15px
+    rgba(53, 183, 201, 0.2);
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    filter 0.2s ease,
+    opacity 0.2s ease;
+}
+
+.mental-math-button:hover {
+  transform:
+    translateY(-2px);
+
+  filter:
+    brightness(1.04);
+
+  box-shadow:
+    0 9px 20px
+    rgba(53, 183, 201, 0.28);
+}
+
+.mental-math-button:active {
+  transform:
+    translateY(0)
+    scale(0.98);
+}
+
+.mental-math-button:focus-visible {
+  outline:
+    3px solid
+    rgba(53, 183, 201, 0.35);
+
+  outline-offset:
+    3px;
+}
+
+
+/* ================================
+   다음 문제 버튼
+================================ */
+
+.mental-math-next-button {
+  margin:
+    0 5px 0 0;
+
+  color: #176078;
+
+  border-color:
+    rgba(53, 183, 201, 0.25);
+
+  background:
+    #ffffff;
+
+  box-shadow:
+    0 5px 12px
+    rgba(31, 130, 160, 0.08);
+}
+
+.mental-math-next-button:hover {
+  color: #ffffff;
+
+  background:
+    linear-gradient(
+      135deg,
+      #55c5d3,
+      #48c4b8
+    );
+}
+
+
+/* ================================
+   시작 / 재시작 버튼
+================================ */
+
+.mental-math-start-button {
+  margin:
+    0 0 0 5px;
+}
+
+.mental-math-start-button:hover {
+  filter:
+    brightness(1.05);
+}
+
+
+/* ================================
+   결과 표시
+================================ */
+
+.mental-math-result {
+  min-height: 52px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin:
+    0 0 20px;
+
+  padding:
+    12px 18px;
+
+  border:
+    1px solid
+    rgba(53, 183, 201, 0.14);
+
+  border-radius: 14px;
+
+  color: #527582;
+
+  background:
+    #f2fbfd;
+
+  font-size: 14px;
+  font-weight: 700;
+
+  line-height: 1.6;
+
+  transition:
+    color 0.2s ease,
+    background-color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+
+/* ================================
+   암산연습 안내 영역
+================================ */
+
+.mental-math-info {
+  margin-top:
+    30px;
+
+  padding:
+    28px 25px;
+
+  border:
+    1px solid
+    rgba(53, 183, 201, 0.16);
+
+  border-radius: 20px;
+
+  background:
+    rgba(255, 255, 255, 0.88);
+
+  box-shadow:
+    0 8px 24px
+    rgba(31, 130, 160, 0.07);
+}
+
+.mental-math-info h2 {
+  margin:
+    0 0 20px;
+
+  color: #176078;
+
+  font-size: 22px;
+
+  line-height: 1.4;
+
+  text-align: center;
+}
+
+
+/* ================================
+   암산연습 안내 카드 그리드
+================================ */
+
+.mental-math-info-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(4, minmax(0, 1fr));
+
+  gap: 12px;
+}
+
+.mental-math-info-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  min-height: 145px;
+
+  padding:
+    18px 14px;
+
+  border:
+    1px solid
+    rgba(53, 183, 201, 0.12);
+
+  border-radius: 15px;
+
+  background:
+    #f5fcfe;
+
+  text-align: center;
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    background-color 0.2s ease;
+}
+
+.mental-math-info-card:hover {
+  transform:
+    translateY(-3px);
+
+  background:
+    #ffffff;
+
+  box-shadow:
+    0 7px 18px
+    rgba(31, 130, 160, 0.09);
+}
+
+.mental-math-info-card > span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 34px;
+  height: 34px;
+
+  margin-bottom: 12px;
+
+  border-radius: 50%;
+
+  color: #ffffff;
+
+  background:
+    linear-gradient(
+      135deg,
+      #35b7c9,
+      #42c9c5
+    );
+
+  font-size: 14px;
+  font-weight: 800;
+
+  box-shadow:
+    0 4px 10px
+    rgba(53, 183, 201, 0.18);
+}
+
+.mental-math-info-card p {
+  margin: 0;
+
+  color: #668692;
+
+  font-size: 12px;
+
+  line-height: 1.65;
+}
+
+.mental-math-info-card strong {
+  color: #176078;
+
+  font-size: 14px;
+}
+
+
+/* ==================================================
+   반응형
+================================================== */
+
+/* ================================
+   태블릿
+================================ */
+
+@media (max-width: 900px) {
+
+  .gallery-game-layout {
+    grid-template-columns:
+      1fr;
+  }
+
+  .gallery-game-canvas-wrapper {
+    max-width: 600px;
+
+    margin:
+      0 auto;
+  }
+
+  .gallery-game-description {
+    max-width: 600px;
+
+    margin:
+      0 auto;
+  }
+
+  /* 암산연습 */
+
+  .mental-math-info-grid {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+  }
+
+}
+
+
+/* ================================
+   기존 태블릿
+================================ */
+
+@media (max-width: 768px) {
+
+  .site-nav {
+    padding:
+      0 12px;
+  }
+
+  .main-menu {
+    gap: 4px;
+
+    padding:
+      8px 0;
+  }
+
+  .menu-link {
+    min-height: 42px;
+
+    padding:
+      9px 13px;
+
+    font-size: 14px;
+  }
+
+  main {
+    padding:
+      30px 16px 55px;
+  }
+
+  .hero-section {
+    padding:
+      55px 25px;
+  }
+
+  .card-grid {
+    gap: 16px;
+  }
+
+  .feature-card {
+    min-height: 260px;
+
+    padding:
+      25px;
+  }
+
+  .submenu {
+    min-width: 175px;
+  }
+
+
+  /* 가위바위보 */
+
+  .rps-game-section {
+    padding:
+      30px 20px;
+  }
+
+  .rps-result-area {
+    gap:
+      15px;
+  }
+
+  .rps-choice-display {
+    width: 100px;
+    height: 100px;
+
+    font-size: 45px;
+  }
+
+  .rps-player {
+    padding:
+      25px 15px;
+  }
+
+  .rps-vs {
+    width: 52px;
+    height: 52px;
+
+    font-size: 15px;
+  }
+
+
+  /* 암산연습 */
+
+  .mental-math-question-card {
+    padding:
+      30px 22px;
+  }
+
+  .mental-math-info {
+    padding:
+      25px 20px;
+  }
+
+}
+
+
+/* ================================
+   스마트폰
+================================ */
+
+@media (max-width: 520px) {
+
+  .main-menu {
+    justify-content:
+      stretch;
+
+    gap:
+      4px;
+  }
+
+  .main-menu > .menu-item {
+    flex:
+      1;
+  }
+
+  .main-menu >
+  .menu-home
+  .menu-link,
+
+  .main-menu >
+  .menu-dropdown >
+  .menu-link {
+
+    width:
+      100%;
+
+    padding:
+      9px 7px;
+
+    font-size:
+      13px;
+  }
+
+  .submenu {
+    left:
+      50%;
+
+    min-width:
+      160px;
+
+    max-width:
+      calc(100vw - 24px);
+  }
+
+  .submenu-link {
+    padding:
+      11px 12px;
+
+    font-size:
+      13px;
+  }
+
+  main {
+    padding:
+      20px 12px 40px;
+  }
+
+  .hero-section {
+    margin-bottom:
+      40px;
+
+    padding:
+      45px 18px;
+  }
+
+  .hero-label {
+    font-size:
+      12px;
+
+    letter-spacing:
+      3px;
+  }
+
+  .hero-section h1 {
+    font-size:
+      29px;
+  }
+
+  .hero-description {
+    font-size:
+      14px;
+
+    line-height:
+      1.8;
+  }
+
+  .content-section {
+    margin-bottom:
+      42px;
+  }
+
+  .section-heading h2 {
+    font-size:
+      26px;
+  }
+
+  .section-heading p {
+    font-size:
+      14px;
+  }
+
+  .card-grid {
+    grid-template-columns:
+      1fr;
+
+    gap:
+      15px;
+  }
+
+  .feature-card {
+    min-height:
+      250px;
+
+    padding:
+      25px;
+  }
+
+  .feature-icon {
+    font-size:
+      38px;
+  }
+
+  .feature-card h3 {
+    font-size:
+      20px;
+  }
+
+  .feature-card p {
+    font-size:
+      14px;
+  }
+
+  .info-section {
+    padding:
+      26px 18px;
+  }
+
+  .info-section h2 {
+    font-size:
+      21px;
+  }
+
+  .info-section p {
+    font-size:
+      14px;
+  }
+
+
+  /* 가위바위보 */
+
+  .rps-game-section {
+    padding:
+      20px 15px;
+  }
+
+
+  .rps-result-area {
+    grid-template-columns:
+      1fr;
+
+    gap:
+      12px;
+  }
+
+
+  .rps-player {
+    width:
+      100%;
+
+    padding:
+      22px 15px;
+  }
+
+
+  .rps-choice-display {
+    width:
+      90px;
+
+    height:
+      90px;
+
+    font-size:
+      40px;
+  }
+
+
+  .rps-vs {
+    width:
+      48px;
+
+    height:
+      48px;
+
+    font-size:
+      14px;
+  }
+
+
+  .rps-game-result {
+    margin:
+      25px 0 20px;
+
+    font-size:
+      15px;
+  }
+
+
+  .rps-button-area {
+    grid-template-columns:
+      1fr;
+
+    gap:
+      10px;
+  }
+
+
+  .rps-choice-button {
+    min-height:
+      80px;
+
+    flex-direction:
+      row;
+
+    gap:
+      12px;
+  }
+
+
+  .rps-choice-button
+  > span:last-child {
+    margin-top:
+      0;
+  }
+
+
+  .rps-score-board {
+    gap:
+      8px;
+  }
+
+
+  .rps-score-item {
+    min-height:
+      75px;
+
+    padding:
+      10px 5px;
+  }
+
+
+  .rps-score-item strong {
+    font-size:
+      21px;
+  }
+
+
+  .rps-reset-button {
+    width:
+      100%;
+
+    margin-top:
+      20px;
+  }
+
+
+  /* 갤로그게임 */
+
+  .gallery-game-status {
+    gap:
+      8px;
+
+    margin-bottom:
+      14px;
+  }
+
+  .gallery-game-status-item {
+    min-height:
+      65px;
+
+    padding:
+      9px 5px;
+
+    border-radius:
+      12px;
+  }
+
+  .gallery-game-status-item span {
+    font-size:
+      10px;
+
+    letter-spacing:
+      0.5px;
+  }
+
+  .gallery-game-status-item strong {
+    font-size:
+      17px;
+  }
+
+  .gallery-game-layout {
+    gap:
+      16px;
+  }
+
+  .gallery-game-canvas-wrapper {
+    border-radius:
+      16px;
+  }
+
+  .gallery-game-overlay {
+    padding:
+      12px;
+  }
+
+  .gallery-game-overlay-card {
+    width:
+      92%;
+
+    padding:
+      24px 16px;
+
+    border-radius:
+      18px;
+  }
+
+  .gallery-game-overlay-card h2 {
+    font-size:
+      23px;
+  }
+
+  .gallery-game-controls {
+    grid-template-columns:
+      1fr;
+
+    gap:
+      6px;
+
+    margin:
+      16px 0;
+  }
+
+  .gallery-game-controls p {
+    font-size:
+      11px;
+  }
+
+  .gallery-game-description {
+    padding:
+      18px;
+
+    border-radius:
+      16px;
+  }
+
+  .gallery-game-description-grid {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+
+    gap:
+      8px;
+  }
+
+  .gallery-game-description-card {
+    min-height:
+      125px;
+
+    padding:
+      12px;
+  }
+
+  .gallery-game-description-icon {
+    font-size:
+      21px;
+  }
+
+  .gallery-game-description-card strong {
+    font-size:
+      13px;
+  }
+
+  .gallery-game-description-card p {
+    font-size:
+      11px;
+  }
+
+
+  /* 암산연습 */
+
+  .mental-math-status {
+    gap:
+      8px;
+  }
+
+  .mental-math-status-item {
+    min-height:
+      70px;
+
+    padding:
+      9px 5px;
+
+    border-radius:
+      12px;
+  }
+
+  .mental-math-status-item span {
+    font-size:
+      10px;
+  }
+
+  .mental-math-status-item strong {
+    font-size:
+      19px;
+  }
+
+  .mental-math-question-card {
+    padding:
+      24px 15px;
+
+    border-radius:
+      18px;
+  }
+
+  .mental-math-question-label {
+    font-size:
+      12px;
+  }
+
+  .mental-math-question {
+    min-height:
+      90px;
+
+    margin-bottom:
+      22px;
+
+    padding:
+      15px;
+
+    border-radius:
+      14px;
+
+    font-size:
+      32px;
+  }
+
+  .mental-math-answer-area {
+    flex-wrap:
+      wrap;
+
+    gap:
+      8px;
+  }
+
+  .mental-math-answer-label {
+    width:
+      100%;
+
+    margin-bottom:
+      2px;
+  }
+
+  .mental-math-answer-input {
+    flex:
+      1;
+
+    min-width:
+      0;
+
+    width:
+      auto;
+
+    min-height:
+      46px;
+  }
+
+  .mental-math-answer-area
+  .mental-math-button {
+    min-height:
+      46px;
+
+    padding:
+      10px 15px;
+  }
+
+  .mental-math-result {
+    font-size:
+      13px;
+  }
+
+  .mental-math-next-button,
+  .mental-math-start-button {
+    width:
+      100%;
+
+    margin:
+      5px 0;
+  }
+
+  .mental-math-info {
+    padding:
+      20px 15px;
+
+    border-radius:
+      16px;
+  }
+
+  .mental-math-info h2 {
+    font-size:
+      20px;
+  }
+
+  .mental-math-info-grid {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+
+    gap:
+      8px;
+  }
+
+  .mental-math-info-card {
+    min-height:
+      135px;
+
+    padding:
+      14px 9px;
+  }
+
+  .mental-math-info-card p {
+    font-size:
+      11px;
+  }
+
+  .mental-math-info-card strong {
+    font-size:
+      13px;
+  }
+
+}
+
+
+/* ================================
+   접근성
+================================ */
+
+.menu-link:focus-visible,
+.submenu-link:focus-visible,
+.feature-card:focus-visible {
+
+  outline:
+    3px solid
+    rgba(53, 183, 201, 0.4);
+
+  outline-offset:
+    3px;
+}
+
+
+/* ================================
+   애니메이션 최소화 설정
+================================ */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .menu-link,
+  .submenu,
+  .submenu-link,
+  .feature-card,
+  .feature-card::after,
+  .feature-button,
+  .rps-choice-button,
+  .rps-choice-display,
+  .rps-game-result,
+  .rps-reset-button,
+  .rps-score-item,
+  .mental-math-status-item,
+  .mental-math-answer-input,
+  .mental-math-button,
+  .mental-math-info-card {
+
+    transition:
+      none;
+
+    animation:
+      none;
+  }
+
+}

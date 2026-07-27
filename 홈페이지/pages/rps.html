@@ -1,0 +1,640 @@
+<!-- 파일 경로: /pages/rps.html -->
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>가위바위보게임</title>
+
+  <link rel="stylesheet" href="../css/style.css">
+
+  <style>
+    /* 파일 경로: /pages/rps.html */
+
+    /* ================================
+       가위바위보 게임 전체 영역
+    ================================ */
+
+    .rps-game-section {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 40px;
+    }
+
+
+    /* ================================
+       플레이어와 컴퓨터 영역
+    ================================ */
+
+    .rps-result-area {
+      display: grid;
+
+      grid-template-columns:
+        minmax(0, 1fr)
+        auto
+        minmax(0, 1fr);
+
+      align-items: center;
+
+      gap: 30px;
+
+      width: 100%;
+    }
+
+
+    /* ================================
+       플레이어 카드
+    ================================ */
+
+    .rps-player {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      min-width: 0;
+
+      padding: 30px 20px;
+
+      border:
+        1px solid
+        rgba(53, 183, 201, 0.18);
+
+      border-radius: 18px;
+
+      background:
+        linear-gradient(
+          135deg,
+          #ffffff,
+          #f0fbfd
+        );
+
+      box-shadow:
+        0 6px 18px
+        rgba(31, 130, 160, 0.07);
+    }
+
+
+    .rps-player h2 {
+      margin:
+        0 0 18px;
+
+      color: #176078;
+
+      font-size: 22px;
+    }
+
+
+    /* ================================
+       선택 결과 표시
+    ================================ */
+
+    .rps-choice-display {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      width: 120px;
+      height: 120px;
+
+      margin-bottom: 15px;
+
+      border-radius: 50%;
+
+      color: #176078;
+
+      background:
+        linear-gradient(
+          135deg,
+          #e5faff,
+          #ffffff
+        );
+
+      font-size: 55px;
+
+      box-shadow:
+        inset 0 0 0 1px
+        rgba(53, 183, 201, 0.15);
+    }
+
+
+    .rps-player p {
+      min-height: 24px;
+
+      margin: 0;
+
+      color: #668692;
+
+      font-size: 14px;
+      font-weight: 600;
+
+      text-align: center;
+    }
+
+
+    /* ================================
+       VS
+    ================================ */
+
+    .rps-vs {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      width: 60px;
+      height: 60px;
+
+      border-radius: 50%;
+
+      color: #ffffff;
+
+      background:
+        linear-gradient(
+          135deg,
+          #35b7c9,
+          #42c9c5
+        );
+
+      font-size: 17px;
+      font-weight: 800;
+
+      box-shadow:
+        0 6px 15px
+        rgba(53, 183, 201, 0.22);
+    }
+
+
+    /* ================================
+       게임 결과
+    ================================ */
+
+    .rps-game-result {
+      margin:
+        35px 0 25px;
+
+      padding:
+        18px 20px;
+
+      border-radius: 14px;
+
+      color: #176078;
+
+      background:
+        #effcff;
+
+      font-size: 17px;
+      font-weight: 700;
+
+      text-align: center;
+    }
+
+
+    /* ================================
+       선택 버튼 영역
+    ================================ */
+
+    .rps-button-area {
+      display: grid;
+
+      grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+      gap: 15px;
+
+      width: 100%;
+
+      margin-bottom: 35px;
+    }
+
+
+    /* ================================
+       가위바위보 버튼
+    ================================ */
+
+    .rps-choice-button {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      min-height: 125px;
+
+      padding: 18px;
+
+      border:
+        2px solid
+        rgba(53, 183, 201, 0.2);
+
+      border-radius: 18px;
+
+      color: #176078;
+
+      background:
+        #ffffff;
+
+      font-family: inherit;
+
+      cursor: pointer;
+
+      transition:
+        transform 0.2s ease,
+        border-color 0.2s ease,
+        background-color 0.2s ease,
+        box-shadow 0.2s ease;
+    }
+
+
+    .rps-choice-button:hover {
+      transform:
+        translateY(-5px);
+
+      border-color:
+        rgba(53, 183, 201, 0.55);
+
+      background:
+        #f2fdff;
+
+      box-shadow:
+        0 10px 22px
+        rgba(31, 130, 160, 0.12);
+    }
+
+
+    .rps-choice-button:active {
+      transform:
+        translateY(-1px);
+    }
+
+
+    .rps-choice-button:focus-visible {
+      outline:
+        3px solid
+        rgba(53, 183, 201, 0.35);
+
+      outline-offset:
+        3px;
+    }
+
+
+    .rps-choice-button::first-line {
+      font-size: 38px;
+    }
+
+
+    .rps-choice-button span {
+      display: block;
+
+      margin-top: 10px;
+
+      font-size: 15px;
+      font-weight: 700;
+    }
+
+
+    /* ================================
+       점수판
+    ================================ */
+
+    .rps-score-board {
+      display: grid;
+
+      grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+      gap: 12px;
+
+      width: 100%;
+
+      padding-top: 25px;
+
+      border-top:
+        1px solid
+        rgba(53, 183, 201, 0.15);
+    }
+
+
+    .rps-score-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      min-height: 85px;
+
+      padding: 15px;
+
+      border-radius: 14px;
+
+      background:
+        #f5fcfd;
+    }
+
+
+    .rps-score-item span {
+      margin-bottom: 7px;
+
+      color: #668692;
+
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+
+    .rps-score-item strong {
+      color: #176078;
+
+      font-size: 25px;
+    }
+
+
+    /* ================================
+       태블릿
+    ================================ */
+
+    @media (max-width: 768px) {
+
+      .rps-game-section {
+        padding: 30px 20px;
+      }
+
+      .rps-result-area {
+        gap: 15px;
+      }
+
+      .rps-choice-display {
+        width: 100px;
+        height: 100px;
+
+        font-size: 45px;
+      }
+
+      .rps-player {
+        padding:
+          25px 15px;
+      }
+
+      .rps-vs {
+        width: 52px;
+        height: 52px;
+
+        font-size: 15px;
+      }
+    }
+
+
+    /* ================================
+       스마트폰
+    ================================ */
+
+    @media (max-width: 520px) {
+
+      .rps-game-section {
+        padding:
+          20px 15px;
+      }
+
+
+      .rps-result-area {
+        grid-template-columns:
+          1fr;
+
+        gap: 12px;
+      }
+
+
+      .rps-player {
+        width: 100%;
+
+        padding:
+          22px 15px;
+      }
+
+
+      .rps-choice-display {
+        width: 90px;
+        height: 90px;
+
+        font-size: 40px;
+      }
+
+
+      .rps-vs {
+        width: 48px;
+        height: 48px;
+
+        font-size: 14px;
+      }
+
+
+      .rps-game-result {
+        margin:
+          25px 0 20px;
+
+        font-size: 15px;
+      }
+
+
+      .rps-button-area {
+        grid-template-columns:
+          1fr;
+
+        gap: 10px;
+      }
+
+
+      .rps-choice-button {
+        min-height:
+          80px;
+
+        flex-direction:
+          row;
+
+        gap: 12px;
+      }
+
+
+      .rps-choice-button span {
+        margin-top: 0;
+      }
+
+
+      .rps-score-board {
+        gap: 8px;
+      }
+
+
+      .rps-score-item {
+        min-height:
+          75px;
+
+        padding:
+          10px 5px;
+      }
+
+
+      .rps-score-item strong {
+        font-size:
+          21px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- 공통 상단 메뉴 -->
+  <header id="site-header"></header>
+
+
+  <main>
+
+    <!-- 게임 제목 -->
+    <section class="hero-section card">
+
+      <p class="hero-label">GAME</p>
+
+      <h1>가위바위보게임</h1>
+
+      <p class="hero-description">
+        컴퓨터와 가위바위보 대결을 해보세요!
+        <br>
+        가위, 바위, 보 중 하나를 선택하면 게임이 시작됩니다.
+      </p>
+
+    </section>
+
+
+    <!-- 게임 영역 -->
+    <section class="rps-game-section card">
+
+      <!-- 플레이어와 컴퓨터 -->
+      <div class="rps-result-area">
+
+        <!-- 플레이어 -->
+        <div class="rps-player">
+
+          <h2>나</h2>
+
+          <div
+            id="player-choice"
+            class="rps-choice-display"
+          >
+            ?
+          </div>
+
+          <p id="player-choice-text">
+            선택해주세요
+          </p>
+
+        </div>
+
+
+        <!-- VS -->
+        <div class="rps-vs">
+          VS
+        </div>
+
+
+        <!-- 컴퓨터 -->
+        <div class="rps-player">
+
+          <h2>컴퓨터</h2>
+
+          <div
+            id="computer-choice"
+            class="rps-choice-display"
+          >
+            ?
+          </div>
+
+          <p id="computer-choice-text">
+            대기 중
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <!-- 게임 결과 -->
+      <div
+        id="game-result"
+        class="rps-game-result"
+      >
+        가위, 바위, 보 중 하나를 선택하세요!
+      </div>
+
+
+      <!-- 선택 버튼 -->
+      <div class="rps-button-area">
+
+        <button
+          type="button"
+          class="rps-choice-button"
+          data-choice="scissors"
+        >
+          <span>✌️</span>
+          <span>가위</span>
+        </button>
+
+
+        <button
+          type="button"
+          class="rps-choice-button"
+          data-choice="rock"
+        >
+          <span>✊</span>
+          <span>바위</span>
+        </button>
+
+
+        <button
+          type="button"
+          class="rps-choice-button"
+          data-choice="paper"
+        >
+          <span>🖐️</span>
+          <span>보</span>
+        </button>
+
+      </div>
+
+
+      <!-- 점수판 -->
+      <div class="rps-score-board">
+
+        <div class="rps-score-item">
+          <span>승리</span>
+          <strong id="win-score">0</strong>
+        </div>
+
+        <div class="rps-score-item">
+          <span>패배</span>
+          <strong id="lose-score">0</strong>
+        </div>
+
+        <div class="rps-score-item">
+          <span>무승부</span>
+          <strong id="draw-score">0</strong>
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- 공통 메뉴 -->
+  <script src="../js/header.js"></script>
+
+  <!-- 가위바위보 게임 -->
+  <script src="../js/rps.js"></script>
+
+</body>
+</html>
