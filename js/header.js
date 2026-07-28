@@ -22,200 +22,611 @@
    * - 학습 기능
    */
 
-  // 현재 HTML 파일이 pages 폴더 안에 있는지 확인합니다.
-  var isInsidePagesFolder = window.location.pathname.indexOf("/pages/") !== -1;
+  /* ==================================================
+     공통 메뉴 생성 함수
+  ================================================== */
 
-  // 현재 HTML 위치를 기준으로 최상위 폴더까지 이동하는 경로입니다.
-  var rootPath = isInsidePagesFolder ? "../" : "";
+  function createSiteHeader() {
 
-  // 홈페이지의 각 페이지 경로를 자동으로 계산합니다.
-  var pagePaths = {
-    home: rootPath + "index.html",
-    rps: rootPath + "pages/rps.html",
-    galleryGame: rootPath + "pages/gallery-game.html",
-    mentalMath: rootPath + "pages/mental-math.html",
-    periodicTable: rootPath + "pages/periodic-table.html"
-  };
+    /*
+     * 이미 공통 메뉴가 생성되어 있다면
+     * 중복으로 생성하지 않습니다.
+     */
+    if (
+      document.querySelector(
+        ".site-header"
+      )
+    ) {
+      return;
+    }
 
-  // 공통 메뉴가 들어갈 위치를 만듭니다.
-  var header = document.createElement("header");
-  header.className = "site-header";
+    /* ==================================================
+       현재 HTML 파일 위치 확인
+    ================================================== */
 
-  // 메뉴 전체를 감싸는 영역입니다.
-  var nav = document.createElement("nav");
-  nav.className = "site-nav";
-  nav.setAttribute("aria-label", "주요 메뉴");
+    var currentPath =
+      window.location.pathname;
 
-  // 메뉴 목록입니다.
-  var menuList = document.createElement("ul");
-  menuList.className = "main-menu";
+    /*
+     * 현재 페이지가 pages 폴더 안에 있는지 확인합니다.
+     *
+     * 예:
+     * /index.html
+     * → 최상위 폴더
+     *
+     * /pages/rps.html
+     * → pages 폴더 안
+     *
+     * /pages/shooting-roguelike.html
+     * → pages 폴더 안
+     */
+    var isInsidePagesFolder =
+      currentPath.indexOf(
+        "/pages/"
+      ) !== -1;
 
-  // 일반 메뉴 항목을 만드는 함수입니다.
-  function createMenuLink(text, href, className) {
-    var li = document.createElement("li");
-    li.className = className || "menu-item";
+    /*
+     * 현재 HTML 파일 위치에 따라
+     * 홈페이지 최상위 폴더로 이동하는 경로를 정합니다.
+     */
+    var rootPath =
+      isInsidePagesFolder
+        ? "../"
+        : "";
 
-    var link = document.createElement("a");
-    link.href = href;
-    link.textContent = text;
-    link.className = "menu-link";
+    /* ==================================================
+       홈페이지 페이지 경로
+    ================================================== */
 
-    li.appendChild(link);
+    var pagePaths = {
 
-    return li;
-  }
+      home:
+        rootPath +
+        "index.html",
 
-  // 하위 메뉴가 있는 메뉴 항목을 만드는 함수입니다.
-  function createDropdownMenu(text, submenuItems, className) {
-    var li = document.createElement("li");
-    li.className = "menu-item menu-dropdown " + (className || "");
+      rps:
+        rootPath +
+        "pages/rps.html",
 
-    // PC와 모바일에서 모두 사용할 수 있는 메뉴 버튼입니다.
-    var button = document.createElement("button");
-    button.type = "button";
-    button.className = "menu-link menu-toggle";
-    button.textContent = text;
-    button.setAttribute("aria-expanded", "false");
-    button.setAttribute("aria-haspopup", "true");
+      galleryGame:
+        rootPath +
+        "pages/gallery-game.html",
 
-    // 하위 메뉴입니다.
-    var submenu = document.createElement("ul");
-    submenu.className = "submenu";
+      shootingRoguelike:
+        rootPath +
+        "pages/shooting-roguelike.html",
 
-    submenuItems.forEach(function (item) {
-      var submenuLi = document.createElement("li");
-      submenuLi.className = "submenu-item";
+      mentalMath:
+        rootPath +
+        "pages/mental-math.html",
 
-      var submenuLink = document.createElement("a");
-      submenuLink.href = item.href;
-      submenuLink.textContent = item.text;
-      submenuLink.className = "submenu-link";
+      periodicTable:
+        rootPath +
+        "pages/periodic-table.html"
 
-      submenuLi.appendChild(submenuLink);
-      submenu.appendChild(submenuLi);
-    });
+    };
 
-    li.appendChild(button);
-    li.appendChild(submenu);
+    /* ==================================================
+       공통 헤더 생성
+    ================================================== */
 
-    // 모바일 터치용 메뉴 열기/닫기
-    button.addEventListener("click", function (event) {
-      event.preventDefault();
-      event.stopPropagation();
+    var header =
+      document.createElement(
+        "header"
+      );
 
-      var isOpen = li.classList.contains("is-open");
+    header.className =
+      "site-header";
 
-      // 다른 하위 메뉴를 닫습니다.
-      document.querySelectorAll(".menu-dropdown.is-open").forEach(function (openMenu) {
-        if (openMenu !== li) {
-          openMenu.classList.remove("is-open");
+    /* ==================================================
+       네비게이션 생성
+    ================================================== */
 
-          var openButton = openMenu.querySelector(".menu-toggle");
+    var nav =
+      document.createElement(
+        "nav"
+      );
 
-          if (openButton) {
-            openButton.setAttribute("aria-expanded", "false");
-          }
+    nav.className =
+      "site-nav";
+
+    nav.setAttribute(
+      "aria-label",
+      "주요 메뉴"
+    );
+
+    /* ==================================================
+       메인 메뉴 목록 생성
+    ================================================== */
+
+    var menuList =
+      document.createElement(
+        "ul"
+      );
+
+    menuList.className =
+      "main-menu";
+
+    /* ==================================================
+       일반 메뉴 링크 생성 함수
+    ================================================== */
+
+    function createMenuLink(
+      text,
+      href,
+      className
+    ) {
+
+      var li =
+        document.createElement(
+          "li"
+        );
+
+      li.className =
+        className ||
+        "menu-item";
+
+      var link =
+        document.createElement(
+          "a"
+        );
+
+      link.href =
+        href;
+
+      link.textContent =
+        text;
+
+      link.className =
+        "menu-link";
+
+      li.appendChild(
+        link
+      );
+
+      return li;
+    }
+
+    /* ==================================================
+       하위 메뉴 생성 함수
+    ================================================== */
+
+    function createDropdownMenu(
+      text,
+      submenuItems,
+      className
+    ) {
+
+      var li =
+        document.createElement(
+          "li"
+        );
+
+      li.className =
+        "menu-item menu-dropdown " +
+        (
+          className ||
+          ""
+        );
+
+      /* ----------------------------------------------
+         상위 메뉴 버튼
+      ---------------------------------------------- */
+
+      var button =
+        document.createElement(
+          "button"
+        );
+
+      button.type =
+        "button";
+
+      button.className =
+        "menu-link menu-toggle";
+
+      button.textContent =
+        text;
+
+      button.setAttribute(
+        "aria-expanded",
+        "false"
+      );
+
+      button.setAttribute(
+        "aria-haspopup",
+        "true"
+      );
+
+      /* ----------------------------------------------
+         하위 메뉴 목록
+      ---------------------------------------------- */
+
+      var submenu =
+        document.createElement(
+          "ul"
+        );
+
+      submenu.className =
+        "submenu";
+
+      submenu.setAttribute(
+        "aria-label",
+        text +
+        " 하위 메뉴"
+      );
+
+      submenuItems.forEach(
+        function (item) {
+
+          var submenuLi =
+            document.createElement(
+              "li"
+            );
+
+          submenuLi.className =
+            "submenu-item";
+
+          var submenuLink =
+            document.createElement(
+              "a"
+            );
+
+          submenuLink.href =
+            item.href;
+
+          submenuLink.textContent =
+            item.text;
+
+          submenuLink.className =
+            "submenu-link";
+
+          submenuLi.appendChild(
+            submenuLink
+          );
+
+          submenu.appendChild(
+            submenuLi
+          );
+
         }
-      });
+      );
 
-      // 현재 메뉴의 상태를 변경합니다.
-      li.classList.toggle("is-open", !isOpen);
-      button.setAttribute("aria-expanded", String(!isOpen));
-    });
+      li.appendChild(
+        button
+      );
 
-    // PC 마우스 오버용 메뉴 열기
-    li.addEventListener("mouseenter", function () {
-      li.classList.add("is-hover");
-    });
+      li.appendChild(
+        submenu
+      );
 
-    // PC 마우스가 메뉴를 벗어나면 닫기
-    li.addEventListener("mouseleave", function () {
-      li.classList.remove("is-hover");
-    });
+      /* ==================================================
+         모바일 터치 메뉴
+      ================================================== */
 
-    return li;
-  }
+      button.addEventListener(
+        "click",
+        function (event) {
 
-  // 처음으로 메뉴
-  menuList.appendChild(
-    createMenuLink(
-      "처음으로",
-      pagePaths.home,
-      "menu-item menu-home"
-    )
-  );
+          event.preventDefault();
 
-  // 게임하자 하위 메뉴
-  var gameMenuItems = [
-    {
-      text: "가위바위보게임",
-      href: pagePaths.rps
-    },
-    {
-      text: "갤로그게임",
-      href: pagePaths.galleryGame
+          event.stopPropagation();
+
+          var isOpen =
+            li.classList.contains(
+              "is-open"
+            );
+
+          /*
+           * 다른 열린 하위 메뉴를 닫습니다.
+           */
+          document
+            .querySelectorAll(
+              ".menu-dropdown.is-open"
+            )
+            .forEach(
+              function (openMenu) {
+
+                if (
+                  openMenu !== li
+                ) {
+
+                  openMenu.classList.remove(
+                    "is-open"
+                  );
+
+                  var openButton =
+                    openMenu.querySelector(
+                      ".menu-toggle"
+                    );
+
+                  if (
+                    openButton
+                  ) {
+
+                    openButton.setAttribute(
+                      "aria-expanded",
+                      "false"
+                    );
+
+                  }
+
+                }
+
+              }
+            );
+
+          /*
+           * 현재 메뉴를 열거나 닫습니다.
+           */
+          li.classList.toggle(
+            "is-open",
+            !isOpen
+          );
+
+          button.setAttribute(
+            "aria-expanded",
+            String(
+              !isOpen
+            )
+          );
+
+        }
+      );
+
+      /* ==================================================
+         PC 마우스 오버 메뉴
+      ================================================== */
+
+      li.addEventListener(
+        "mouseenter",
+        function () {
+
+          li.classList.add(
+            "is-hover"
+          );
+
+        }
+      );
+
+      li.addEventListener(
+        "mouseleave",
+        function () {
+
+          li.classList.remove(
+            "is-hover"
+          );
+
+        }
+      );
+
+      return li;
+
     }
-  ];
 
-  menuList.appendChild(
-    createDropdownMenu(
-      "게임하자",
-      gameMenuItems,
-      "menu-games"
-    )
-  );
+    /* ==================================================
+       처음으로
+    ================================================== */
 
-  // 공부하자 하위 메뉴
-  var studyMenuItems = [
-    {
-      text: "암산연습",
-      href: pagePaths.mentalMath
-    },
-    {
-      text: "원소주기율표",
-      href: pagePaths.periodicTable
-    }
-  ];
+    menuList.appendChild(
+      createMenuLink(
+        "처음으로",
+        pagePaths.home,
+        "menu-item menu-home"
+      )
+    );
 
-  menuList.appendChild(
-    createDropdownMenu(
-      "공부하자",
-      studyMenuItems,
-      "menu-study"
-    )
-  );
+    /* ==================================================
+       게임하자 하위 메뉴
+    ================================================== */
 
-  // 메뉴를 nav에 넣습니다.
-  nav.appendChild(menuList);
+    var gameMenuItems = [
 
-  // nav를 header에 넣습니다.
-  header.appendChild(nav);
+      {
+        text:
+          "가위바위보게임",
 
-  // HTML 문서의 가장 앞에 공통 헤더를 삽입합니다.
-  if (document.body) {
-    document.body.insertBefore(header, document.body.firstChild);
-  } else {
-    document.addEventListener("DOMContentLoaded", function () {
-      document.body.insertBefore(header, document.body.firstChild);
-    });
-  }
+        href:
+          pagePaths.rps
+      },
 
-  // 페이지의 다른 영역을 클릭하면 열린 하위 메뉴를 닫습니다.
-  document.addEventListener("click", function () {
-    document.querySelectorAll(".menu-dropdown.is-open").forEach(function (openMenu) {
-      openMenu.classList.remove("is-open");
+      {
+        text:
+          "갤로그게임",
 
-      var openButton = openMenu.querySelector(".menu-toggle");
+        href:
+          pagePaths.galleryGame
+      },
 
-      if (openButton) {
-        openButton.setAttribute("aria-expanded", "false");
+      {
+        text:
+          "슈팅 로그라이크",
+
+        href:
+          pagePaths.shootingRoguelike
       }
-    });
-  });
 
-  // 메뉴 내부를 클릭했을 때 document의 클릭 이벤트가
-  // 바로 실행되어 메뉴가 닫히는 것을 방지합니다.
-  header.addEventListener("click", function (event) {
-    event.stopPropagation();
-  });
+    ];
+
+    menuList.appendChild(
+      createDropdownMenu(
+        "게임하자",
+        gameMenuItems,
+        "menu-games"
+      )
+    );
+
+    /* ==================================================
+       공부하자 하위 메뉴
+    ================================================== */
+
+    var studyMenuItems = [
+
+      {
+        text:
+          "암산연습",
+
+        href:
+          pagePaths.mentalMath
+      },
+
+      {
+        text:
+          "원소주기율표",
+
+        href:
+          pagePaths.periodicTable
+      }
+
+    ];
+
+    menuList.appendChild(
+      createDropdownMenu(
+        "공부하자",
+        studyMenuItems,
+        "menu-study"
+      )
+    );
+
+    /* ==================================================
+       메뉴 조립
+    ================================================== */
+
+    nav.appendChild(
+      menuList
+    );
+
+    header.appendChild(
+      nav
+    );
+
+    /* ==================================================
+       헤더 삽입
+    ================================================== */
+
+    /*
+     * body가 존재하면 즉시 삽입합니다.
+     */
+    if (
+      document.body
+    ) {
+
+      document.body.insertBefore(
+        header,
+        document.body.firstChild
+      );
+
+    }
+
+    /*
+     * body가 아직 만들어지지 않았다면
+     * DOMContentLoaded 때 삽입합니다.
+     */
+    else {
+
+      document.addEventListener(
+        "DOMContentLoaded",
+        function () {
+
+          if (
+            !document.querySelector(
+              ".site-header"
+            )
+          ) {
+
+            document.body.insertBefore(
+              header,
+              document.body.firstChild
+            );
+
+          }
+
+        },
+        {
+          once: true
+        }
+      );
+
+    }
+
+    /* ==================================================
+       바깥 영역 클릭 시 하위 메뉴 닫기
+    ================================================== */
+
+    document.addEventListener(
+      "click",
+      function () {
+
+        document
+          .querySelectorAll(
+            ".menu-dropdown.is-open"
+          )
+          .forEach(
+            function (openMenu) {
+
+              openMenu.classList.remove(
+                "is-open"
+              );
+
+              var openButton =
+                openMenu.querySelector(
+                  ".menu-toggle"
+                );
+
+              if (
+                openButton
+              ) {
+
+                openButton.setAttribute(
+                  "aria-expanded",
+                  "false"
+                );
+
+              }
+
+            }
+          );
+
+      }
+    );
+
+    /* ==================================================
+       헤더 내부 클릭 전파 방지
+    ================================================== */
+
+    header.addEventListener(
+      "click",
+      function (event) {
+
+        event.stopPropagation();
+
+      }
+    );
+
+  }
+
+  /* ==================================================
+     DOM 준비 상태에 따라 메뉴 생성
+  ================================================== */
+
+  if (
+    document.readyState ===
+    "loading"
+  ) {
+
+    document.addEventListener(
+      "DOMContentLoaded",
+      createSiteHeader,
+      {
+        once: true
+      }
+    );
+
+  }
+
+  else {
+
+    createSiteHeader();
+
+  }
+
 })();

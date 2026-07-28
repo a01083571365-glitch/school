@@ -1,0 +1,488 @@
+<!-- 파일 경로: /pages/shooting-roguelike.html -->
+
+<!DOCTYPE html>
+
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
+
+  <title>슈팅 로그라이크</title>
+
+  <link
+    rel="stylesheet"
+    href="../css/style.css"
+  />
+</head>
+
+<body>
+
+  <!-- ================================
+       공통 상단 메뉴
+  ================================ -->
+
+  <header
+    id="site-header"
+    class="site-header"
+  ></header>
+
+  <!-- ================================
+       메인 콘텐츠
+  ================================ -->
+
+  <main>
+
+```
+<!-- ================================
+     게임 소개 및 게임 영역
+================================ -->
+
+<section
+  class="card content-section shooting-roguelike-section"
+>
+
+  <!-- ================================
+       게임 제목
+  ================================ -->
+
+  <div class="section-heading">
+
+    <p class="hero-label">
+      SHOOTING ROGUELIKE
+    </p>
+
+    <h1>
+      슈팅 로그라이크
+    </h1>
+
+    <p>
+      몰려오는 적을 물리치며 최대한 오래 살아남으세요!
+    </p>
+
+  </div>
+
+
+  <!-- ================================
+       게임 상태 표시
+  ================================ -->
+
+  <div
+    class="shooting-roguelike-status"
+  >
+
+    <div
+      class="shooting-roguelike-status-item"
+    >
+
+      <span>
+        생존 시간
+      </span>
+
+      <strong
+        id="shooting-roguelike-time"
+      >
+        00:00
+      </strong>
+
+    </div>
+
+
+    <div
+      class="shooting-roguelike-status-item"
+    >
+
+      <span>
+        레벨
+      </span>
+
+      <strong
+        id="shooting-roguelike-level"
+      >
+        1
+      </strong>
+
+    </div>
+
+
+    <div
+      class="shooting-roguelike-status-item"
+    >
+
+      <span>
+        처치 수
+      </span>
+
+      <strong
+        id="shooting-roguelike-kills"
+      >
+        0
+      </strong>
+
+    </div>
+
+  </div>
+
+
+  <!-- ================================
+       게임 화면
+  ================================ -->
+
+  <div
+    class="shooting-roguelike-game-wrapper"
+  >
+
+    <canvas
+      id="shooting-roguelike-canvas"
+      class="shooting-roguelike-canvas"
+      width="960"
+      height="540"
+    ></canvas>
+
+
+    <!-- ================================
+         게임 시작 화면
+    ================================ -->
+
+    <div
+      id="shooting-roguelike-start-screen"
+      class="shooting-roguelike-overlay"
+    >
+
+      <div
+        class="shooting-roguelike-overlay-content"
+      >
+
+        <h2>
+          슈팅 로그라이크
+        </h2>
+
+        <p>
+          몰려오는 적을 물리치고 최대한 오래 살아남으세요.
+        </p>
+
+        <p>
+          이동: WASD / 방향키
+        </p>
+
+        <button
+          type="button"
+          id="shooting-roguelike-start-button"
+          class="shooting-roguelike-button shooting-roguelike-start-button"
+        >
+          게임 시작
+        </button>
+
+      </div>
+
+    </div>
+
+
+    <!-- ================================
+         게임 오버 화면
+    ================================ -->
+
+    <div
+      id="shooting-roguelike-game-over-screen"
+      class="shooting-roguelike-overlay"
+      hidden
+    >
+
+      <div
+        class="shooting-roguelike-overlay-content"
+      >
+
+        <h2>
+          GAME OVER
+        </h2>
+
+        <div
+          class="shooting-roguelike-final-status"
+        >
+
+          <p>
+            생존 시간:
+            <strong
+              id="shooting-roguelike-final-time"
+            >
+              00:00
+            </strong>
+          </p>
+
+          <p>
+            처치 수:
+            <strong
+              id="shooting-roguelike-final-kills"
+            >
+              0
+            </strong>
+          </p>
+
+          <p>
+            최종 레벨:
+            <strong
+              id="shooting-roguelike-final-level"
+            >
+              1
+            </strong>
+          </p>
+
+          <p>
+            최고 기록:
+            <strong
+              id="shooting-roguelike-high-score"
+            >
+              00:00
+            </strong>
+          </p>
+
+        </div>
+
+        <button
+          type="button"
+          id="shooting-roguelike-restart-button"
+          class="shooting-roguelike-button shooting-roguelike-restart-button"
+        >
+          다시 시작
+        </button>
+
+      </div>
+
+    </div>
+
+
+    <!-- ================================
+         레벨업 화면
+    ================================ -->
+
+    <div
+      id="shooting-roguelike-level-up-screen"
+      class="shooting-roguelike-overlay"
+      hidden
+    >
+
+      <div
+        class="shooting-roguelike-overlay-content"
+      >
+
+        <h2>
+          LEVEL UP!
+        </h2>
+
+        <p>
+          강화할 능력을 선택하세요.
+        </p>
+
+        <div
+          id="shooting-roguelike-upgrade-list"
+          class="shooting-roguelike-upgrade-list"
+        ></div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- ================================
+       게임 정보
+  ================================ -->
+
+  <div
+    class="shooting-roguelike-game-info"
+  >
+
+    <!-- ================================
+         체력
+    ================================ -->
+
+    <div
+      class="shooting-roguelike-info-item"
+    >
+
+      <div
+        class="shooting-roguelike-info-label"
+      >
+        체력
+      </div>
+
+      <div
+        class="shooting-roguelike-health-bar"
+      >
+
+        <div
+          id="shooting-roguelike-health-fill"
+          class="shooting-roguelike-health-fill"
+        ></div>
+
+      </div>
+
+      <span
+        id="shooting-roguelike-health-text"
+      >
+        100 / 100
+      </span>
+
+    </div>
+
+
+    <!-- ================================
+         경험치
+    ================================ -->
+
+    <div
+      class="shooting-roguelike-info-item"
+    >
+
+      <div
+        class="shooting-roguelike-info-label"
+      >
+        경험치
+      </div>
+
+      <div
+        class="shooting-roguelike-exp-bar"
+      >
+
+        <div
+          id="shooting-roguelike-exp-fill"
+          class="shooting-roguelike-exp-fill"
+        ></div>
+
+      </div>
+
+      <span
+        id="shooting-roguelike-exp-text"
+      >
+        0 / 10
+      </span>
+
+    </div>
+
+
+    <!-- ================================
+         현재 무기
+    ================================ -->
+
+    <div
+      class="shooting-roguelike-info-item"
+    >
+
+      <div
+        class="shooting-roguelike-info-label"
+      >
+        현재 무기
+      </div>
+
+      <strong
+        id="shooting-roguelike-weapon"
+      >
+        기본 탄환
+      </strong>
+
+    </div>
+
+  </div>
+
+
+  <!-- ================================
+       게임 안내
+  ================================ -->
+
+  <div
+    class="shooting-roguelike-controls"
+  >
+
+    <h2>
+      게임 방법
+    </h2>
+
+    <div
+      class="shooting-roguelike-controls-grid"
+    >
+
+      <div
+        class="shooting-roguelike-control-card"
+      >
+
+        <span>
+          이동
+        </span>
+
+        <strong>
+          WASD / 방향키
+        </strong>
+
+      </div>
+
+
+      <div
+        class="shooting-roguelike-control-card"
+      >
+
+        <span>
+          공격
+        </span>
+
+        <strong>
+          자동 공격
+        </strong>
+
+      </div>
+
+
+      <div
+        class="shooting-roguelike-control-card"
+      >
+
+        <span>
+          성장
+        </span>
+
+        <strong>
+          경험치 획득 → 레벨업
+        </strong>
+
+      </div>
+
+
+      <div
+        class="shooting-roguelike-control-card"
+      >
+
+        <span>
+          목표
+        </span>
+
+        <strong>
+          최대한 오래 생존
+        </strong>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+```
+
+  </main>
+
+  <!-- ================================
+       공통 메뉴 및 슈팅 로그라이크 JavaScript
+  ================================ -->
+
+  <script
+    src="../js/header.js"
+  ></script>
+
+  <script
+    src="../js/shooting-roguelike.js"
+  ></script>
+
+</body>
+</html>

@@ -2287,6 +2287,1151 @@ main {
 
 
 /* ==================================================
+   원소주기율표 전용 디자인
+================================================== */
+
+/* ================================
+   원소주기율표 전체 영역
+================================ */
+
+.periodic-table-section {
+  width: 100%;
+
+  margin:
+    0 auto;
+
+  padding:
+    40px;
+}
+
+
+/* ================================
+   원소주기율표 상태 표시
+================================ */
+
+.periodic-table-status {
+  display: grid;
+
+  grid-template-columns:
+    repeat(3, minmax(0, 1fr));
+
+  gap: 14px;
+
+  width: 100%;
+  max-width: 900px;
+
+  margin:
+    0 auto 25px;
+}
+
+.periodic-table-status-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 85px;
+
+  padding:
+    14px 18px;
+
+  border:
+    1px solid
+    rgba(53, 183, 201, 0.18);
+
+  border-radius: 16px;
+
+  background:
+    rgba(255, 255, 255, 0.92);
+
+  box-shadow:
+    0 6px 18px
+    rgba(31, 130, 160, 0.08);
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.periodic-table-status-item:hover {
+  transform:
+    translateY(-2px);
+
+  box-shadow:
+    0 9px 20px
+    rgba(31, 130, 160, 0.11);
+}
+
+.periodic-table-status-item span {
+  margin-bottom: 6px;
+
+  color: #668692;
+
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.periodic-table-status-item strong {
+  color: #176078;
+
+  font-size: 26px;
+  font-weight: 800;
+}
+
+
+/* ================================
+   주기율표 카드
+================================ */
+
+.periodic-table-card {
+  width: 100%;
+
+  margin:
+    0 auto 30px;
+
+  padding:
+    30px;
+
+  border:
+    1px solid
+    rgba(53, 183, 201, 0.2);
+
+  border-radius: 22px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.98),
+      rgba(239, 251, 253, 0.96)
+    );
+
+  box-shadow:
+    0 12px 30px
+    rgba(31, 130, 160, 0.1);
+}
+
+
+/* ================================
+   주기율표 제목
+================================ */
+
+.periodic-table-heading {
+  margin-bottom:
+    25px;
+
+  text-align:
+    center;
+}
+
+.periodic-table-heading h2 {
+  margin:
+    0 0 8px;
+
+  color:
+    #176078;
+
+  font-size:
+    25px;
+
+  line-height:
+    1.4;
+}
+
+.periodic-table-heading p {
+  margin:
+    0;
+
+  color:
+    #668692;
+
+  font-size:
+    14px;
+
+  line-height:
+    1.6;
+}
+
+
+/* ================================
+   주기율표 본체
+================================ */
+
+.periodic-table {
+  display: grid;
+
+  grid-template-columns:
+    repeat(18, minmax(0, 1fr));
+
+  grid-auto-rows:
+    minmax(58px, auto);
+
+  gap:
+    6px;
+
+  width:
+    100%;
+
+  padding:
+    10px;
+
+  overflow-x:
+    auto;
+
+  border:
+    1px solid
+    rgba(53, 183, 201, 0.12);
+
+  border-radius:
+    18px;
+
+  background:
+    rgba(234, 250, 255, 0.72);
+}
+
+
+/* ================================
+   원소 버튼 기본
+================================ */
+
+.periodic-table-element {
+  display:
+    flex;
+
+  flex-direction:
+    column;
+
+  align-items:
+    center;
+
+  justify-content:
+    center;
+
+  min-width:
+    0;
+
+  min-height:
+    58px;
+
+  padding:
+    5px 3px;
+
+  border:
+    1px solid
+    rgba(53, 183, 201, 0.2);
+
+  border-radius:
+    10px;
+
+  color:
+    #176078;
+
+  background:
+    #ffffff;
+
+  font-family:
+    inherit;
+
+  cursor:
+    pointer;
+
+  transition:
+    transform 0.18s ease,
+    box-shadow 0.18s ease,
+    border-color 0.18s ease,
+    background-color 0.18s ease;
+}
+
+.periodic-table-element:hover {
+  z-index:
+    2;
+
+  transform:
+    translateY(-3px)
+    scale(1.04);
+
+  border-color:
+    rgba(53, 183, 201, 0.55);
+
+  background:
+    #f2fdff;
+
+  box-shadow:
+    0 7px 16px
+    rgba(31, 130, 160, 0.14);
+}
+
+.periodic-table-element:active {
+  transform:
+    translateY(-1px)
+    scale(0.98);
+}
+
+.periodic-table-element:focus-visible {
+  outline:
+    3px solid
+    rgba(53, 183, 201, 0.35);
+
+  outline-offset:
+    2px;
+}
+
+
+/* ================================
+   원소 번호
+================================ */
+
+.periodic-table-element-number {
+  display:
+    block;
+
+  align-self:
+    flex-start;
+
+  margin:
+    0 0 2px 3px;
+
+  color:
+    #7b9aa4;
+
+  font-size:
+    9px;
+
+  font-weight:
+    600;
+
+  line-height:
+    1;
+}
+
+
+/* ================================
+   원소 기호
+================================ */
+
+.periodic-table-element-symbol {
+  display:
+    block;
+
+  color:
+    #15536c;
+
+  font-size:
+    clamp(15px, 2vw, 21px);
+
+  font-weight:
+    800;
+
+  line-height:
+    1.1;
+}
+
+
+/* ================================
+   원소 이름
+================================ */
+
+.periodic-table-element-name {
+  display:
+    block;
+
+  max-width:
+    100%;
+
+  margin-top:
+    3px;
+
+  overflow:
+    hidden;
+
+  color:
+    #668692;
+
+  font-size:
+    8px;
+
+  line-height:
+    1.2;
+
+  text-align:
+    center;
+
+  text-overflow:
+    ellipsis;
+
+  white-space:
+    nowrap;
+}
+
+
+/* ================================
+   원소 정보 영역
+================================ */
+
+.periodic-table-element-info {
+  min-height:
+    130px;
+
+  margin-top:
+    22px;
+
+  padding:
+    22px;
+
+  border:
+    1px solid
+    rgba(53, 183, 201, 0.15);
+
+  border-radius:
+    16px;
+
+  background:
+    #f5fcfe;
+
+  text-align:
+    center;
+}
+
+.periodic-table-element-info-placeholder {
+  margin:
+    0;
+
+  color:
+    #7b9aa4;
+
+  font-size:
+    14px;
+
+  line-height:
+    1.7;
+}
+
+
+/* ================================
+   선택된 원소 정보 내부
+================================ */
+
+.periodic-table-element-info h3 {
+  margin:
+    0 0 10px;
+
+  color:
+    #176078;
+
+  font-size:
+    24px;
+
+  line-height:
+    1.3;
+}
+
+.periodic-table-element-info p {
+  margin:
+    6px 0;
+
+  color:
+    #5e7d88;
+
+  font-size:
+    14px;
+
+  line-height:
+    1.7;
+}
+
+.periodic-table-element-info strong {
+  color:
+    #176078;
+}
+
+
+/* ================================
+   원소 분류별 기본 색상
+================================ */
+
+.periodic-table-element.periodic-table-alkali {
+  background:
+    #fff7f0;
+}
+
+.periodic-table-element.periodic-table-alkaline {
+  background:
+    #fffaf0;
+}
+
+.periodic-table-element.periodic-table-transition {
+  background:
+    #f1fbff;
+}
+
+.periodic-table-element.periodic-table-post-transition {
+  background:
+    #f4fbf8;
+}
+
+.periodic-table-element.periodic-table-metalloid {
+  background:
+    #f6fbff;
+}
+
+.periodic-table-element.periodic-table-nonmetal {
+  background:
+    #f2fcf8;
+}
+
+.periodic-table-element.periodic-table-halogen {
+  background:
+    #f5f8ff;
+}
+
+.periodic-table-element.periodic-table-noble-gas {
+  background:
+    #f8f4ff;
+}
+
+.periodic-table-element.periodic-table-lanthanide {
+  background:
+    #fff8f8;
+}
+
+.periodic-table-element.periodic-table-actinide {
+  background:
+    #fff5f7;
+}
+
+
+/* ================================
+   원소 퀴즈 카드
+================================ */
+
+.periodic-table-quiz-card {
+  width:
+    100%;
+
+  max-width:
+    900px;
+
+  margin:
+    0 auto 30px;
+
+  padding:
+    35px 30px;
+
+  border:
+    1px solid
+    rgba(53, 183, 201, 0.2);
+
+  border-radius:
+    22px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.98),
+      rgba(239, 251, 253, 0.96)
+    );
+
+  box-shadow:
+    0 12px 30px
+    rgba(31, 130, 160, 0.1);
+
+  text-align:
+    center;
+}
+
+
+/* ================================
+   퀴즈 제목
+================================ */
+
+.periodic-table-quiz-heading {
+  margin-bottom:
+    25px;
+}
+
+.periodic-table-quiz-heading h2 {
+  margin:
+    0 0 8px;
+
+  color:
+    #176078;
+
+  font-size:
+    27px;
+
+  line-height:
+    1.4;
+}
+
+.periodic-table-quiz-heading p:not(.hero-label) {
+  margin:
+    0;
+
+  color:
+    #668692;
+
+  font-size:
+    14px;
+
+  line-height:
+    1.7;
+}
+
+
+/* ================================
+   퀴즈 문제
+================================ */
+
+.periodic-table-question {
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  justify-content:
+    center;
+
+  min-height:
+    95px;
+
+  margin:
+    0 auto 25px;
+
+  padding:
+    20px;
+
+  border:
+    1px solid
+    rgba(53, 183, 201, 0.16);
+
+  border-radius:
+    18px;
+
+  color:
+    #15536c;
+
+  background:
+    #ffffff;
+
+  font-size:
+    clamp(20px, 4vw, 32px);
+
+  font-weight:
+    800;
+
+  line-height:
+    1.4;
+
+  box-shadow:
+    inset 0 0 0 1px
+    rgba(53, 183, 201, 0.05);
+}
+
+
+/* ================================
+   퀴즈 답 입력 영역
+================================ */
+
+.periodic-table-answer-area {
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  justify-content:
+    center;
+
+  gap:
+    10px;
+
+  width:
+    100%;
+
+  margin:
+    0 auto 20px;
+}
+
+.periodic-table-answer-label {
+  color:
+    #176078;
+
+  font-size:
+    14px;
+
+  font-weight:
+    700;
+
+  white-space:
+    nowrap;
+}
+
+.periodic-table-answer-input {
+  width:
+    min(320px, 100%);
+
+  min-height:
+    48px;
+
+  padding:
+    10px 15px;
+
+  border:
+    2px solid
+    rgba(53, 183, 201, 0.22);
+
+  border-radius:
+    12px;
+
+  color:
+    #176078;
+
+  background:
+    #ffffff;
+
+  font-family:
+    inherit;
+
+  font-size:
+    16px;
+
+  font-weight:
+    700;
+
+  text-align:
+    center;
+
+  outline:
+    none;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    background-color 0.2s ease;
+}
+
+.periodic-table-answer-input::placeholder {
+  color:
+    #9ab0b8;
+
+  font-size:
+    13px;
+
+  font-weight:
+    500;
+}
+
+.periodic-table-answer-input:hover {
+  border-color:
+    rgba(53, 183, 201, 0.4);
+}
+
+.periodic-table-answer-input:focus {
+  border-color:
+    #35b7c9;
+
+  background:
+    #f8feff;
+
+  box-shadow:
+    0 0 0 4px
+    rgba(53, 183, 201, 0.12);
+}
+
+
+/* ================================
+   원소주기율표 버튼
+================================ */
+
+.periodic-table-button {
+  display:
+    inline-flex;
+
+  align-items:
+    center;
+
+  justify-content:
+    center;
+
+  min-height:
+    46px;
+
+  padding:
+    10px 22px;
+
+  border:
+    1px solid
+    rgba(53, 183, 201, 0.2);
+
+  border-radius:
+    12px;
+
+  color:
+    #ffffff;
+
+  background:
+    linear-gradient(
+      135deg,
+      #35b7c9,
+      #42c9c5
+    );
+
+  font-family:
+    inherit;
+
+  font-size:
+    14px;
+
+  font-weight:
+    700;
+
+  line-height:
+    1.3;
+
+  cursor:
+    pointer;
+
+  box-shadow:
+    0 6px 15px
+    rgba(53, 183, 201, 0.2);
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    filter 0.2s ease;
+}
+
+.periodic-table-button:hover {
+  transform:
+    translateY(-2px);
+
+  filter:
+    brightness(1.04);
+
+  box-shadow:
+    0 9px 20px
+    rgba(53, 183, 201, 0.28);
+}
+
+.periodic-table-button:active {
+  transform:
+    translateY(0)
+    scale(0.98);
+}
+
+.periodic-table-button:focus-visible {
+  outline:
+    3px solid
+    rgba(53, 183, 201, 0.35);
+
+  outline-offset:
+    3px;
+}
+
+
+/* ================================
+   다음 문제 버튼
+================================ */
+
+.periodic-table-next-button {
+  margin:
+    0 5px 0 0;
+
+  color:
+    #176078;
+
+  border-color:
+    rgba(53, 183, 201, 0.25);
+
+  background:
+    #ffffff;
+
+  box-shadow:
+    0 5px 12px
+    rgba(31, 130, 160, 0.08);
+}
+
+.periodic-table-next-button:hover {
+  color:
+    #ffffff;
+
+  background:
+    linear-gradient(
+      135deg,
+      #55c5d3,
+      #48c4b8
+    );
+}
+
+
+/* ================================
+   시작 / 다시 시작 버튼
+================================ */
+
+.periodic-table-start-button {
+  margin:
+    0 0 0 5px;
+}
+
+
+/* ================================
+   퀴즈 결과
+================================ */
+
+.periodic-table-result {
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  justify-content:
+    center;
+
+  min-height:
+    52px;
+
+  margin:
+    0 0 20px;
+
+  padding:
+    12px 18px;
+
+  border:
+    1px solid
+    rgba(53, 183, 201, 0.14);
+
+  border-radius:
+    14px;
+
+  color:
+    #527582;
+
+  background:
+    #f2fbfd;
+
+  font-size:
+    14px;
+
+  font-weight:
+    700;
+
+  line-height:
+    1.6;
+
+  transition:
+    color 0.2s ease,
+    background-color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+
+/* ================================
+   퀴즈 결과 상태
+================================ */
+
+.periodic-table-result.periodic-table-correct {
+  color:
+    #08765e;
+
+  background:
+    #e8faf5;
+
+  border-color:
+    rgba(32, 170, 135, 0.25);
+}
+
+.periodic-table-result.periodic-table-wrong {
+  color:
+    #a04e5a;
+
+  background:
+    #fff0f3;
+
+  border-color:
+    rgba(210, 103, 120, 0.25);
+}
+
+
+/* ==================================================
+   원소주기율표 안내 영역
+================================================== */
+
+.periodic-table-info {
+  width:
+    100%;
+
+  max-width:
+    900px;
+
+  margin:
+    0 auto;
+
+  padding:
+    28px 25px;
+
+  border:
+    1px solid
+    rgba(53, 183, 201, 0.16);
+
+  border-radius:
+    20px;
+
+  background:
+    rgba(255, 255, 255, 0.88);
+
+  box-shadow:
+    0 8px 24px
+    rgba(31, 130, 160, 0.07);
+}
+
+.periodic-table-info h2 {
+  margin:
+    0 0 20px;
+
+  color:
+    #176078;
+
+  font-size:
+    22px;
+
+  line-height:
+    1.4;
+
+  text-align:
+    center;
+}
+
+
+/* ================================
+   원소주기율표 안내 카드
+================================ */
+
+.periodic-table-info-grid {
+  display:
+    grid;
+
+  grid-template-columns:
+    repeat(4, minmax(0, 1fr));
+
+  gap:
+    12px;
+}
+
+.periodic-table-info-card {
+  display:
+    flex;
+
+  flex-direction:
+    column;
+
+  align-items:
+    center;
+
+  min-height:
+    145px;
+
+  padding:
+    18px 14px;
+
+  border:
+    1px solid
+    rgba(53, 183, 201, 0.12);
+
+  border-radius:
+    15px;
+
+  background:
+    #f5fcfe;
+
+  text-align:
+    center;
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    background-color 0.2s ease;
+}
+
+.periodic-table-info-card:hover {
+  transform:
+    translateY(-3px);
+
+  background:
+    #ffffff;
+
+  box-shadow:
+    0 7px 18px
+    rgba(31, 130, 160, 0.09);
+}
+
+.periodic-table-info-card > span {
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  justify-content:
+    center;
+
+  width:
+    34px;
+
+  height:
+    34px;
+
+  margin-bottom:
+    12px;
+
+  border-radius:
+    50%;
+
+  color:
+    #ffffff;
+
+  background:
+    linear-gradient(
+      135deg,
+      #35b7c9,
+      #42c9c5
+    );
+
+  font-size:
+    14px;
+
+  font-weight:
+    800;
+
+  box-shadow:
+    0 4px 10px
+    rgba(53, 183, 201, 0.18);
+}
+
+.periodic-table-info-card p {
+  margin:
+    0;
+
+  color:
+    #668692;
+
+  font-size:
+    12px;
+
+  line-height:
+    1.65;
+}
+
+.periodic-table-info-card strong {
+  color:
+    #176078;
+
+  font-size:
+    14px;
+}
+
+
+/* ==================================================
    반응형
 ================================================== */
 
@@ -2318,6 +3463,23 @@ main {
   /* 암산연습 */
 
   .mental-math-info-grid {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+  }
+
+  /* 원소주기율표 */
+
+  .periodic-table-section {
+    padding:
+      30px;
+  }
+
+  .periodic-table {
+    overflow-x:
+      auto;
+  }
+
+  .periodic-table-info-grid {
     grid-template-columns:
       repeat(2, minmax(0, 1fr));
   }
@@ -2420,6 +3582,34 @@ main {
   .mental-math-info {
     padding:
       25px 20px;
+  }
+
+
+  /* 원소주기율표 */
+
+  .periodic-table-section {
+    padding:
+      25px 20px;
+  }
+
+  .periodic-table-card {
+    padding:
+      25px 20px;
+  }
+
+  .periodic-table-quiz-card {
+    padding:
+      30px 22px;
+  }
+
+  .periodic-table-element {
+    min-height:
+      54px;
+  }
+
+  .periodic-table-element-name {
+    display:
+      none;
   }
 
 }
@@ -2965,6 +4155,1299 @@ main {
       13px;
   }
 
+
+/* 파일 경로: /css/style.css */
+
+/* ================================
+   원소주기율표
+================================ */
+
+/* ================================
+   원소주기율표 전체 영역
+================================ */
+
+.periodic-table-section {
+  padding:
+    30px;
+
+  border-radius:
+    24px;
+}
+
+
+/* ================================
+   게임 상태
+================================ */
+
+.periodic-table-status {
+  display:
+    grid;
+
+  grid-template-columns:
+    repeat(3, minmax(0, 1fr));
+
+  gap:
+    12px;
+
+  margin-bottom:
+    24px;
+}
+
+.periodic-table-status-item {
+  display:
+    flex;
+
+  flex-direction:
+    column;
+
+  align-items:
+    center;
+
+  justify-content:
+    center;
+
+  min-height:
+    82px;
+
+  padding:
+    12px;
+
+  border:
+    1px solid
+    rgba(53, 183, 201, 0.18);
+
+  border-radius:
+    16px;
+
+  background:
+    rgba(255, 255, 255, 0.82);
+
+  box-shadow:
+    0 6px 18px
+    rgba(53, 183, 201, 0.08);
+
+  text-align:
+    center;
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.periodic-table-status-item:hover {
+  transform:
+    translateY(-2px);
+
+  box-shadow:
+    0 9px 22px
+    rgba(53, 183, 201, 0.13);
+}
+
+.periodic-table-status-item span {
+  margin-bottom:
+    5px;
+
+  color:
+    #6b8790;
+
+  font-size:
+    13px;
+
+  font-weight:
+    700;
+}
+
+.periodic-table-status-item strong {
+  color:
+    #167d91;
+
+  font-size:
+    24px;
+
+  font-weight:
+    800;
+}
+
+
+/* ================================
+   퀴즈 영역
+================================ */
+
+.periodic-table-quiz-card {
+  margin-top:
+    24px;
+
+  padding:
+    30px;
+
+  border:
+    1px solid
+    rgba(53, 183, 201, 0.16);
+
+  border-radius:
+    24px;
+
+  background:
+    rgba(255, 255, 255, 0.88);
+
+  box-shadow:
+    0 8px 24px
+    rgba(53, 183, 201, 0.07);
+}
+
+
+/* ================================
+   퀴즈 제목
+================================ */
+
+.periodic-table-quiz-heading {
+  margin-bottom:
+    24px;
+
+  text-align:
+    center;
+}
+
+.periodic-table-quiz-heading h2 {
+  margin:
+    5px 0 8px;
+
+  color:
+    #176b7c;
+
+  font-size:
+    26px;
+
+  font-weight:
+    800;
+}
+
+.periodic-table-quiz-heading p:not(.hero-label) {
+  margin:
+    0;
+
+  color:
+    #6b8790;
+
+  font-size:
+    14px;
+}
+
+
+/* ================================
+   퀴즈 문제
+================================ */
+
+.periodic-table-question {
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  justify-content:
+    center;
+
+  min-height:
+    100px;
+
+  margin-bottom:
+    24px;
+
+  padding:
+    20px;
+
+  border:
+    2px solid
+    rgba(53, 183, 201, 0.18);
+
+  border-radius:
+    18px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(231, 250, 253, 0.95),
+      rgba(255, 255, 255, 0.98)
+    );
+
+  color:
+    #20515d;
+
+  font-size:
+    20px;
+
+  font-weight:
+    700;
+
+  line-height:
+    1.6;
+
+  text-align:
+    center;
+}
+
+.periodic-table-question strong {
+  color:
+    #167d91;
+}
+
+
+/* ================================
+   4×4 퀴즈 정답 카드 영역
+================================ */
+
+.periodic-table-answer-cards {
+  display:
+    grid;
+
+  grid-template-columns:
+    repeat(4, minmax(0, 1fr));
+
+  grid-template-rows:
+    repeat(4, auto);
+
+  gap:
+    12px;
+
+  width:
+    100%;
+
+  max-width:
+    720px;
+
+  margin:
+    0 auto 20px;
+
+  padding:
+    12px;
+
+  border:
+    1px solid
+    rgba(53, 183, 201, 0.14);
+
+  border-radius:
+    20px;
+
+  background:
+    rgba(221, 248, 252, 0.55);
+}
+
+
+/* ================================
+   4×4 퀴즈 카드
+================================ */
+
+.periodic-table-element-card {
+  position:
+    relative;
+
+  display:
+    flex;
+
+  flex-direction:
+    column;
+
+  align-items:
+    center;
+
+  justify-content:
+    center;
+
+  width:
+    100%;
+
+  min-width:
+    0;
+
+  min-height:
+    120px;
+
+  padding:
+    12px 8px;
+
+  border:
+    2px solid
+    rgba(53, 183, 201, 0.18);
+
+  border-radius:
+    16px;
+
+  background:
+    rgba(255, 255, 255, 0.96);
+
+  color:
+    #20515d;
+
+  font-family:
+    inherit;
+
+  cursor:
+    pointer;
+
+  box-shadow:
+    0 5px 12px
+    rgba(53, 183, 201, 0.07);
+
+  transition:
+    transform 0.18s ease,
+    border-color 0.18s ease,
+    background-color 0.18s ease,
+    box-shadow 0.18s ease;
+}
+
+
+/* ================================
+   퀴즈 카드 마우스 효과
+================================ */
+
+.periodic-table-element-card:hover:not(:disabled) {
+  transform:
+    translateY(-4px);
+
+  border-color:
+    rgba(53, 183, 201, 0.55);
+
+  background:
+    #ffffff;
+
+  box-shadow:
+    0 10px 20px
+    rgba(53, 183, 201, 0.16);
+}
+
+
+/* ================================
+   퀴즈 카드 클릭 효과
+================================ */
+
+.periodic-table-element-card:active:not(:disabled) {
+  transform:
+    translateY(-1px);
+
+  box-shadow:
+    0 4px 10px
+    rgba(53, 183, 201, 0.12);
+}
+
+
+/* ================================
+   비활성화된 퀴즈 카드
+================================ */
+
+.periodic-table-element-card:disabled {
+  cursor:
+    default;
+}
+
+
+/* ================================
+   퀴즈 카드 원자번호
+================================ */
+
+.periodic-table-element-card
+.periodic-table-element-number {
+  position:
+    absolute;
+
+  top:
+    8px;
+
+  left:
+    10px;
+
+  color:
+    #7c9aa2;
+
+  font-size:
+    11px;
+
+  font-weight:
+    700;
+}
+
+
+/* ================================
+   퀴즈 카드 원소 기호
+================================ */
+
+.periodic-table-element-card
+.periodic-table-element-symbol {
+  margin-bottom:
+    5px;
+
+  color:
+    #167d91;
+
+  font-size:
+    30px;
+
+  font-weight:
+    800;
+
+  line-height:
+    1;
+}
+
+
+/* ================================
+   퀴즈 카드 원소 이름
+================================ */
+
+.periodic-table-element-card
+.periodic-table-element-name {
+  max-width:
+    100%;
+
+  overflow:
+    hidden;
+
+  color:
+    #52727b;
+
+  font-size:
+    13px;
+
+  font-weight:
+    700;
+
+  line-height:
+    1.3;
+
+  text-align:
+    center;
+
+  text-overflow:
+    ellipsis;
+
+  white-space:
+    nowrap;
+}
+
+
+/* ================================
+   정답 카드
+================================ */
+
+.periodic-table-element-card.periodic-table-correct {
+  border-color:
+    #35b789;
+
+  background:
+    rgba(226, 250, 239, 0.98);
+
+  color:
+    #16744f;
+
+  box-shadow:
+    0 8px 20px
+    rgba(53, 183, 137, 0.2);
+
+  animation:
+    periodicTableCorrectCard 0.35s ease;
+}
+
+.periodic-table-element-card.periodic-table-correct
+.periodic-table-element-symbol {
+  color:
+    #16845a;
+}
+
+.periodic-table-element-card.periodic-table-correct
+.periodic-table-element-name {
+  color:
+    #287457;
+}
+
+
+/* ================================
+   오답 카드
+================================ */
+
+.periodic-table-element-card.periodic-table-wrong {
+  border-color:
+    #e28a8a;
+
+  background:
+    rgba(255, 238, 238, 0.98);
+
+  color:
+    #a54f4f;
+
+  box-shadow:
+    0 8px 20px
+    rgba(220, 100, 100, 0.16);
+
+  animation:
+    periodicTableWrongCard 0.35s ease;
+}
+
+.periodic-table-element-card.periodic-table-wrong
+.periodic-table-element-symbol {
+  color:
+    #bd5c5c;
+}
+
+.periodic-table-element-card.periodic-table-wrong
+.periodic-table-element-name {
+  color:
+    #986060;
+}
+
+
+/* ================================
+   정답 카드 애니메이션
+================================ */
+
+@keyframes periodicTableCorrectCard {
+
+  0% {
+    transform:
+      scale(1);
+  }
+
+  50% {
+    transform:
+      scale(1.05);
+  }
+
+  100% {
+    transform:
+      scale(1);
+  }
+
+}
+
+
+/* ================================
+   오답 카드 애니메이션
+================================ */
+
+@keyframes periodicTableWrongCard {
+
+  0%,
+  100% {
+    transform:
+      translateX(0);
+  }
+
+  25% {
+    transform:
+      translateX(-4px);
+  }
+
+  75% {
+    transform:
+      translateX(4px);
+  }
+
+}
+
+
+/* ================================
+   결과 표시
+================================ */
+
+.periodic-table-result {
+  min-height:
+    24px;
+
+  margin:
+    10px 0 16px;
+
+  color:
+    #52727b;
+
+  font-size:
+    14px;
+
+  font-weight:
+    700;
+
+  line-height:
+    1.5;
+
+  text-align:
+    center;
+}
+
+.periodic-table-result.periodic-table-correct {
+  color:
+    #16845a;
+}
+
+.periodic-table-result.periodic-table-wrong {
+  color:
+    #bd5c5c;
+}
+
+
+/* ================================
+   버튼 공통
+================================ */
+
+.periodic-table-button {
+  min-height:
+    46px;
+
+  padding:
+    10px 20px;
+
+  border:
+    none;
+
+  border-radius:
+    12px;
+
+  background:
+    #35b7c9;
+
+  color:
+    #ffffff;
+
+  font-family:
+    inherit;
+
+  font-size:
+    14px;
+
+  font-weight:
+    700;
+
+  cursor:
+    pointer;
+
+  box-shadow:
+    0 5px 12px
+    rgba(53, 183, 201, 0.18);
+
+  transition:
+    transform 0.18s ease,
+    background-color 0.18s ease,
+    box-shadow 0.18s ease;
+}
+
+.periodic-table-button:hover:not(:disabled) {
+  transform:
+    translateY(-2px);
+
+  background:
+    #279fb1;
+
+  box-shadow:
+    0 8px 16px
+    rgba(53, 183, 201, 0.24);
+}
+
+.periodic-table-button:active:not(:disabled) {
+  transform:
+    translateY(0);
+}
+
+.periodic-table-button:disabled {
+  background:
+    #b8cdd1;
+
+  box-shadow:
+    none;
+
+  cursor:
+    not-allowed;
+
+  opacity:
+    0.7;
+}
+
+
+/* ================================
+   다음 문제 / 시작 버튼
+================================ */
+
+.periodic-table-next-button,
+.periodic-table-start-button {
+  width:
+    100%;
+
+  margin-top:
+    8px;
+}
+
+
+/* ================================
+   실제 원소 주기율표 영역
+================================ */
+
+.periodic-table-card {
+  margin-top:
+    24px;
+
+  padding:
+    28px;
+
+  border:
+    1px solid
+    rgba(53, 183, 201, 0.18);
+
+  border-radius:
+    24px;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(240, 252, 255, 0.96),
+      rgba(255, 255, 255, 0.98)
+    );
+
+  box-shadow:
+    0 10px 28px
+    rgba(53, 183, 201, 0.09);
+}
+
+
+/* ================================
+   실제 원소 주기율표 제목
+================================ */
+
+.periodic-table-heading {
+  margin-bottom:
+    22px;
+
+  text-align:
+    center;
+}
+
+.periodic-table-heading h2 {
+  margin:
+    0 0 8px;
+
+  color:
+    #176b7c;
+
+  font-size:
+    25px;
+
+  font-weight:
+    800;
+}
+
+.periodic-table-heading p {
+  margin:
+    0;
+
+  color:
+    #6b8790;
+
+  font-size:
+    14px;
+}
+
+
+/* ================================
+   실제 원소 주기율표
+================================ */
+
+.periodic-table {
+  display:
+    grid;
+
+  grid-template-columns:
+    repeat(4, minmax(0, 1fr));
+
+  gap:
+    12px;
+
+  width:
+    100%;
+
+  max-width:
+    720px;
+
+  margin:
+    0 auto;
+
+  padding:
+    12px;
+
+  border:
+    1px solid
+    rgba(53, 183, 201, 0.14);
+
+  border-radius:
+    20px;
+
+  background:
+    rgba(221, 248, 252, 0.55);
+}
+
+
+/* ================================
+   선택한 원소 정보
+================================ */
+
+.periodic-table-element-info {
+  display:
+    none;
+
+  min-height:
+    100px;
+
+  margin-top:
+    18px;
+
+  padding:
+    20px;
+
+  border-radius:
+    16px;
+
+  background:
+    rgba(255, 255, 255, 0.8);
+
+  color:
+    #52727b;
+
+  text-align:
+    center;
+}
+
+.periodic-table-element-info-placeholder {
+  margin:
+    0;
+
+  color:
+    #78949b;
+
+  font-size:
+    14px;
+}
+
+
+/* ================================
+   이용 방법
+================================ */
+
+.periodic-table-info {
+  margin-top:
+    24px;
+
+  padding:
+    28px;
+
+  border:
+    1px solid
+    rgba(53, 183, 201, 0.14);
+
+  border-radius:
+    20px;
+
+  background:
+    rgba(240, 252, 255, 0.72);
+}
+
+.periodic-table-info h2 {
+  margin:
+    0 0 20px;
+
+  color:
+    #176b7c;
+
+  font-size:
+    22px;
+
+  text-align:
+    center;
+}
+
+.periodic-table-info-grid {
+  display:
+    grid;
+
+  grid-template-columns:
+    repeat(4, minmax(0, 1fr));
+
+  gap:
+    12px;
+}
+
+.periodic-table-info-card {
+  display:
+    flex;
+
+  flex-direction:
+    column;
+
+  align-items:
+    center;
+
+  justify-content:
+    center;
+
+  min-height:
+    150px;
+
+  padding:
+    18px 12px;
+
+  border:
+    1px solid
+    rgba(53, 183, 201, 0.14);
+
+  border-radius:
+    16px;
+
+  background:
+    rgba(255, 255, 255, 0.8);
+
+  text-align:
+    center;
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.periodic-table-info-card:hover {
+  transform:
+    translateY(-3px);
+
+  box-shadow:
+    0 8px 18px
+    rgba(53, 183, 201, 0.1);
+}
+
+.periodic-table-info-card > span {
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  justify-content:
+    center;
+
+  width:
+    34px;
+
+  height:
+    34px;
+
+  margin-bottom:
+    10px;
+
+  border-radius:
+    50%;
+
+  background:
+    #35b7c9;
+
+  color:
+    #ffffff;
+
+  font-size:
+    15px;
+
+  font-weight:
+    800;
+}
+
+.periodic-table-info-card p {
+  margin:
+    0;
+
+  color:
+    #6b8790;
+
+  font-size:
+    13px;
+
+  line-height:
+    1.6;
+}
+
+.periodic-table-info-card strong {
+  color:
+    #20515d;
+
+  font-size:
+    14px;
+}
+
+
+/* ================================
+   태블릿
+================================ */
+
+@media (max-width: 768px) {
+
+  .periodic-table-section {
+    padding:
+      24px 18px;
+  }
+
+  .periodic-table-quiz-card {
+    padding:
+      22px 16px;
+  }
+
+  .periodic-table-answer-cards {
+    gap:
+      9px;
+
+    padding:
+      9px;
+  }
+
+  .periodic-table-element-card {
+    min-height:
+      105px;
+
+    padding:
+      10px 6px;
+  }
+
+  .periodic-table-element-card
+  .periodic-table-element-symbol {
+    font-size:
+      25px;
+  }
+
+  .periodic-table-element-card
+  .periodic-table-element-name {
+    font-size:
+      11px;
+  }
+
+  .periodic-table-card {
+    padding:
+      22px 16px;
+  }
+
+  .periodic-table {
+    gap:
+      9px;
+
+    padding:
+      9px;
+  }
+
+  .periodic-table-info-grid {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+  }
+
+}
+
+
+/* ================================
+   스마트폰
+================================ */
+
+@media (max-width: 520px) {
+
+  .periodic-table-section {
+    padding:
+      20px 12px;
+
+    border-radius:
+      18px;
+  }
+
+  .periodic-table-status {
+    gap:
+      8px;
+
+    margin-bottom:
+      16px;
+  }
+
+  .periodic-table-status-item {
+    min-height:
+      68px;
+
+    padding:
+      8px 4px;
+
+    border-radius:
+      12px;
+  }
+
+  .periodic-table-status-item span {
+    font-size:
+      10px;
+  }
+
+  .periodic-table-status-item strong {
+    font-size:
+      19px;
+  }
+
+  .periodic-table-quiz-card {
+    padding:
+      22px 10px;
+
+    border-radius:
+      18px;
+  }
+
+  .periodic-table-quiz-heading {
+    margin-bottom:
+      18px;
+  }
+
+  .periodic-table-quiz-heading h2 {
+    font-size:
+      22px;
+  }
+
+  .periodic-table-quiz-heading p:not(.hero-label) {
+    font-size:
+      12px;
+  }
+
+  .periodic-table-question {
+    min-height:
+      90px;
+
+    padding:
+      14px;
+
+    border-radius:
+      14px;
+
+    font-size:
+      17px;
+  }
+
+
+  /* ================================
+     스마트폰에서도 퀴즈 카드 4×4 유지
+  ================================ */
+
+  .periodic-table-answer-cards {
+    grid-template-columns:
+      repeat(4, minmax(0, 1fr));
+
+    gap:
+      6px;
+
+    padding:
+      7px;
+
+    border-radius:
+      14px;
+  }
+
+  .periodic-table-element-card {
+    min-height:
+      82px;
+
+    padding:
+      8px 3px;
+
+    border-radius:
+      10px;
+  }
+
+  .periodic-table-element-card
+  .periodic-table-element-number {
+    top:
+      5px;
+
+    left:
+      6px;
+
+    font-size:
+      8px;
+  }
+
+  .periodic-table-element-card
+  .periodic-table-element-symbol {
+    margin-bottom:
+      3px;
+
+    font-size:
+      20px;
+  }
+
+  .periodic-table-element-card
+  .periodic-table-element-name {
+    font-size:
+      9px;
+  }
+
+  .periodic-table-card {
+    padding:
+      18px 10px;
+
+    border-radius:
+      18px;
+  }
+
+  .periodic-table-heading {
+    margin-bottom:
+      16px;
+  }
+
+  .periodic-table-heading h2 {
+    font-size:
+      21px;
+  }
+
+  .periodic-table-heading p {
+    font-size:
+      12px;
+  }
+
+  .periodic-table {
+    gap:
+      6px;
+
+    padding:
+      7px;
+
+    border-radius:
+      14px;
+  }
+
+  .periodic-table-info {
+    padding:
+      20px 14px;
+
+    border-radius:
+      16px;
+  }
+
+  .periodic-table-info h2 {
+    font-size:
+      20px;
+  }
+
+  .periodic-table-info-grid {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+
+    gap:
+      8px;
+  }
+
+  .periodic-table-info-card {
+    min-height:
+      125px;
+
+    padding:
+      14px 8px;
+  }
+
+  .periodic-table-info-card p {
+    font-size:
+      10px;
+  }
+
+  .periodic-table-info-card strong {
+    font-size:
+      12px;
+  }
+
 }
 
 
@@ -2972,9 +5455,9 @@ main {
    접근성
 ================================ */
 
-.menu-link:focus-visible,
-.submenu-link:focus-visible,
-.feature-card:focus-visible {
+.periodic-table-element-card:focus-visible,
+.periodic-table-button:focus-visible,
+.periodic-table-answer-input:focus-visible {
 
   outline:
     3px solid
@@ -2991,27 +5474,859 @@ main {
 
 @media (prefers-reduced-motion: reduce) {
 
-  .menu-link,
-  .submenu,
-  .submenu-link,
-  .feature-card,
-  .feature-card::after,
-  .feature-button,
-  .rps-choice-button,
-  .rps-choice-display,
-  .rps-game-result,
-  .rps-reset-button,
-  .rps-score-item,
-  .mental-math-status-item,
-  .mental-math-answer-input,
-  .mental-math-button,
-  .mental-math-info-card {
+  .periodic-table-element-card,
+  .periodic-table-status-item,
+  .periodic-table-answer-input,
+  .periodic-table-button,
+  .periodic-table-info-card {
 
     transition:
       none;
 
     animation:
       none;
+  }
+
+}
+/* 파일 경로: /css/style.css */
+
+/* ==================================================
+   원소주기율표 4×4 퀴즈 인터페이스 강제 고정
+   기존 주기율표 및 다른 기능에는 영향을 주지 않음
+================================================== */
+
+.periodic-table-answer-cards {
+  display: grid !important;
+
+  grid-template-columns:
+    repeat(4, minmax(0, 1fr)) !important;
+
+  grid-template-rows:
+    repeat(4, minmax(0, auto)) !important;
+
+  width: 100% !important;
+
+  max-width: 720px !important;
+
+  margin:
+    0 auto 20px !important;
+
+  gap: 12px !important;
+
+  padding: 12px !important;
+
+  overflow: visible !important;
+}
+
+
+.periodic-table-answer-cards
+.periodic-table-element-card {
+  display: flex !important;
+
+  width: 100% !important;
+
+  min-width: 0 !important;
+
+  min-height: 120px !important;
+
+  margin: 0 !important;
+}
+
+
+/* ==================================================
+   태블릿에서도 4×4 유지
+================================================== */
+
+@media (max-width: 768px) {
+
+  .periodic-table-answer-cards {
+    grid-template-columns:
+      repeat(4, minmax(0, 1fr)) !important;
+
+    grid-template-rows:
+      repeat(4, minmax(0, auto)) !important;
+
+    gap: 9px !important;
+
+    padding: 9px !important;
+  }
+
+  .periodic-table-answer-cards
+  .periodic-table-element-card {
+    min-height: 105px !important;
+  }
+
+}
+
+
+/* ==================================================
+   스마트폰에서도 반드시 4×4 유지
+================================================== */
+
+@media (max-width: 520px) {
+
+  .periodic-table-answer-cards {
+    grid-template-columns:
+      repeat(4, minmax(0, 1fr)) !important;
+
+    grid-template-rows:
+      repeat(4, minmax(0, auto)) !important;
+
+    gap: 6px !important;
+
+    padding: 7px !important;
+
+    width: 100% !important;
+
+    max-width: 100% !important;
+  }
+
+  .periodic-table-answer-cards
+  .periodic-table-element-card {
+    min-height: 82px !important;
+
+    padding:
+      8px 3px !important;
+  }
+
+}
+/* 파일 경로: /css/style.css */
+
+/* ==================================================
+   슈팅 로그라이크 게임
+   현재 shooting-roguelike.html / shooting-roguelike.js 대응
+================================================== */
+
+
+/* ================================
+   게임 전체 영역
+================================ */
+
+.shooting-roguelike-section {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+
+/* ================================
+   상단 상태 표시
+================================ */
+
+.shooting-roguelike-status {
+  display: grid;
+  grid-template-columns:
+    repeat(3, minmax(0, 1fr));
+
+  gap: 14px;
+
+  margin:
+    0 auto 20px;
+
+  max-width: 1000px;
+}
+
+.shooting-roguelike-status-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 78px;
+
+  padding: 14px 18px;
+
+  border:
+    1px solid
+    rgba(53, 183, 201, 0.2);
+
+  border-radius: 16px;
+
+  background:
+    rgba(255, 255, 255, 0.92);
+
+  box-shadow:
+    0 6px 18px
+    rgba(31, 130, 160, 0.08);
+}
+
+.shooting-roguelike-status-item span {
+  margin-bottom: 5px;
+
+  color: #668692;
+
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.shooting-roguelike-status-item strong {
+  color: #176078;
+
+  font-size: 22px;
+  font-weight: 800;
+}
+
+
+/* ================================
+   게임 화면 바깥 영역
+================================ */
+
+.shooting-roguelike-game-wrapper {
+  position: relative;
+
+  width: 100%;
+  max-width: 1000px;
+
+  margin:
+    0 auto;
+
+  overflow: hidden;
+
+  border-radius: 24px;
+
+  background:
+    #0b1724;
+
+  box-shadow:
+    0 18px 45px
+    rgba(0, 40, 70, 0.22);
+}
+
+
+/* ================================
+   Canvas
+================================ */
+
+.shooting-roguelike-canvas {
+  display: block;
+
+  width: 100%;
+  height: auto;
+
+  aspect-ratio:
+    16 / 9;
+
+  background:
+    #0b1724;
+}
+
+
+/* ================================
+   공통 오버레이
+================================ */
+
+.shooting-roguelike-overlay {
+  position: absolute;
+
+  inset: 0;
+
+  z-index: 30;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  padding: 30px;
+
+  text-align: center;
+
+  background:
+    rgba(5, 20, 32, 0.86);
+
+  backdrop-filter:
+    blur(6px);
+}
+
+
+/* hidden 속성이 적용된 화면은 완전히 숨김 */
+
+.shooting-roguelike-overlay[hidden] {
+  display: none;
+}
+
+
+/* ================================
+   오버레이 내부
+================================ */
+
+.shooting-roguelike-overlay-content {
+  width: 100%;
+  max-width: 650px;
+
+  padding: 35px;
+
+  border:
+    1px solid
+    rgba(255, 255, 255, 0.15);
+
+  border-radius: 24px;
+
+  background:
+    rgba(13, 34, 50, 0.92);
+
+  box-shadow:
+    0 20px 50px
+    rgba(0, 0, 0, 0.3);
+}
+
+.shooting-roguelike-overlay-content h2 {
+  margin:
+    0 0 15px;
+
+  color: #ffffff;
+
+  font-size:
+    clamp(28px, 5vw, 48px);
+
+  font-weight: 800;
+
+  line-height: 1.3;
+}
+
+.shooting-roguelike-overlay-content p {
+  margin:
+    8px 0;
+
+  color: #c9eaf4;
+
+  font-size: 15px;
+
+  line-height: 1.7;
+}
+
+
+/* ================================
+   게임 버튼
+================================ */
+
+.shooting-roguelike-button {
+  min-width: 180px;
+
+  margin-top: 20px;
+
+  padding:
+    13px 24px;
+
+  border: none;
+
+  border-radius: 999px;
+
+  color: #ffffff;
+
+  background:
+    linear-gradient(
+      135deg,
+      #16a9c7,
+      #1676a8
+    );
+
+  box-shadow:
+    0 8px 20px
+    rgba(0, 120, 170, 0.3);
+
+  font: inherit;
+
+  font-size: 16px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    opacity 0.2s ease;
+}
+
+.shooting-roguelike-button:hover {
+  transform:
+    translateY(-2px);
+
+  box-shadow:
+    0 12px 25px
+    rgba(0, 120, 170, 0.4);
+}
+
+.shooting-roguelike-button:active {
+  transform:
+    translateY(0);
+}
+
+
+/* ================================
+   게임 오버 화면
+================================ */
+
+#shooting-roguelike-game-over-screen {
+  z-index: 50;
+}
+
+#shooting-roguelike-game-over-screen
+.shooting-roguelike-overlay-content
+h2 {
+  color:
+    #ff7585;
+}
+
+
+/* ================================
+   게임 오버 기록
+================================ */
+
+.shooting-roguelike-final-status {
+  display: grid;
+
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr));
+
+  gap: 10px;
+
+  margin:
+    20px auto;
+
+  max-width: 500px;
+}
+
+.shooting-roguelike-final-status p {
+  margin: 0;
+
+  padding:
+    12px 15px;
+
+  border-radius: 12px;
+
+  background:
+    rgba(255, 255, 255, 0.06);
+}
+
+.shooting-roguelike-final-status strong {
+  color: #ffffff;
+}
+
+
+/* ================================
+   레벨업 화면
+================================ */
+
+#shooting-roguelike-level-up-screen {
+  z-index: 40;
+}
+
+.shooting-roguelike-upgrade-list {
+  display: grid;
+
+  grid-template-columns:
+    repeat(3, minmax(0, 1fr));
+
+  gap: 15px;
+
+  width: 100%;
+
+  margin-top: 25px;
+}
+
+
+/* ================================
+   레벨업 선택 버튼
+================================ */
+
+.shooting-roguelike-upgrade-button {
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: flex-start;
+
+  min-height: 150px;
+
+  padding:
+    20px;
+
+  border:
+    2px solid
+    rgba(255, 255, 255, 0.15);
+
+  border-radius: 18px;
+
+  color: #ffffff;
+
+  background:
+    rgba(20, 58, 78, 0.9);
+
+  font: inherit;
+
+  text-align: left;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.2s ease,
+    border-color 0.2s ease,
+    background 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.shooting-roguelike-upgrade-button:hover {
+  transform:
+    translateY(-5px);
+
+  border-color:
+    #58dff5;
+
+  background:
+    rgba(27, 83, 108, 0.95);
+
+  box-shadow:
+    0 10px 25px
+    rgba(0, 0, 0, 0.2);
+}
+
+.shooting-roguelike-upgrade-button strong {
+  display: block;
+
+  margin-bottom: 10px;
+
+  color: #ffffff;
+
+  font-size: 18px;
+}
+
+.shooting-roguelike-upgrade-button span {
+  display: block;
+
+  color: #c9eaf4;
+
+  font-size: 14px;
+
+  line-height: 1.6;
+}
+
+
+/* ================================
+   게임 정보 영역
+================================ */
+
+.shooting-roguelike-game-info {
+  display: grid;
+
+  grid-template-columns:
+    repeat(3, minmax(0, 1fr));
+
+  gap: 14px;
+
+  max-width: 1000px;
+
+  margin:
+    20px auto 0;
+}
+
+.shooting-roguelike-info-item {
+  padding:
+    18px;
+
+  border:
+    1px solid
+    rgba(53, 183, 201, 0.18);
+
+  border-radius: 16px;
+
+  background:
+    rgba(255, 255, 255, 0.92);
+
+  box-shadow:
+    0 6px 18px
+    rgba(31, 130, 160, 0.07);
+
+  text-align: center;
+}
+
+.shooting-roguelike-info-label {
+  margin-bottom: 10px;
+
+  color: #668692;
+
+  font-size: 13px;
+  font-weight: 700;
+}
+
+
+/* ================================
+   체력바
+================================ */
+
+.shooting-roguelike-health-bar,
+.shooting-roguelike-exp-bar {
+  width: 100%;
+
+  height: 12px;
+
+  margin-bottom: 8px;
+
+  overflow: hidden;
+
+  border-radius: 999px;
+
+  background:
+    #dcecf1;
+}
+
+.shooting-roguelike-health-fill,
+.shooting-roguelike-exp-fill {
+  width: 0;
+
+  height: 100%;
+
+  border-radius: inherit;
+
+  transition:
+    width 0.2s ease;
+}
+
+.shooting-roguelike-health-fill {
+  background:
+    linear-gradient(
+      90deg,
+      #ff5364,
+      #ff8a70
+    );
+}
+
+.shooting-roguelike-exp-fill {
+  background:
+    linear-gradient(
+      90deg,
+      #4dd9ff,
+      #76f7d0
+    );
+}
+
+.shooting-roguelike-info-item > span {
+  color: #527582;
+
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.shooting-roguelike-info-item > strong {
+  color: #176078;
+
+  font-size: 16px;
+}
+
+
+/* ================================
+   게임 안내
+================================ */
+
+.shooting-roguelike-controls {
+  max-width: 1000px;
+
+  margin:
+    25px auto 0;
+
+  padding:
+    25px;
+
+  border:
+    1px solid
+    rgba(53, 183, 201, 0.18);
+
+  border-radius: 20px;
+
+  background:
+    rgba(255, 255, 255, 0.8);
+
+  box-shadow:
+    0 6px 18px
+    rgba(31, 130, 160, 0.06);
+}
+
+.shooting-roguelike-controls h2 {
+  margin:
+    0 0 18px;
+
+  color: #176078;
+
+  font-size: 22px;
+
+  text-align: center;
+}
+
+.shooting-roguelike-controls-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(4, minmax(0, 1fr));
+
+  gap: 12px;
+}
+
+.shooting-roguelike-control-card {
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  justify-content: center;
+
+  min-height: 85px;
+
+  padding:
+    15px;
+
+  border-radius: 14px;
+
+  background:
+    rgba(224, 249, 255, 0.7);
+
+  text-align: center;
+}
+
+.shooting-roguelike-control-card span {
+  margin-bottom: 6px;
+
+  color: #668692;
+
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.shooting-roguelike-control-card strong {
+  color: #176078;
+
+  font-size: 14px;
+}
+
+
+/* ================================
+   반응형
+================================ */
+
+@media (max-width: 800px) {
+
+  .shooting-roguelike-status {
+    gap: 10px;
+  }
+
+  .shooting-roguelike-status-item {
+    min-height: 68px;
+
+    padding:
+      10px;
+  }
+
+  .shooting-roguelike-status-item strong {
+    font-size: 19px;
+  }
+
+  .shooting-roguelike-upgrade-list {
+    grid-template-columns:
+      1fr;
+
+    max-height: 60vh;
+
+    overflow-y: auto;
+  }
+
+  .shooting-roguelike-upgrade-button {
+    min-height: auto;
+  }
+
+  .shooting-roguelike-game-info {
+    grid-template-columns:
+      1fr;
+  }
+
+  .shooting-roguelike-controls-grid {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+  }
+
+}
+
+
+@media (max-width: 500px) {
+
+  .shooting-roguelike-status {
+    grid-template-columns:
+      1fr;
+
+    gap: 8px;
+  }
+
+  .shooting-roguelike-status-item {
+    min-height: 60px;
+
+    flex-direction: row;
+
+    justify-content: space-between;
+
+    padding:
+      10px 15px;
+  }
+
+  .shooting-roguelike-status-item span {
+    margin:
+      0;
+  }
+
+  .shooting-roguelike-status-item strong {
+    font-size: 18px;
+  }
+
+  .shooting-roguelike-game-wrapper {
+    border-radius: 16px;
+  }
+
+  .shooting-roguelike-canvas {
+    min-height: 320px;
+
+    object-fit: contain;
+  }
+
+  .shooting-roguelike-overlay {
+    padding:
+      15px;
+  }
+
+  .shooting-roguelike-overlay-content {
+    padding:
+      25px 18px;
+
+    border-radius: 18px;
+  }
+
+  .shooting-roguelike-overlay-content h2 {
+    font-size: 28px;
+  }
+
+  .shooting-roguelike-overlay-content p {
+    font-size: 14px;
+  }
+
+  .shooting-roguelike-button {
+    min-width: 150px;
+
+    padding:
+      11px 18px;
+
+    font-size: 14px;
+  }
+
+  .shooting-roguelike-final-status {
+    grid-template-columns:
+      1fr;
+  }
+
+  .shooting-roguelike-controls {
+    padding:
+      20px 15px;
+  }
+
+  .shooting-roguelike-controls-grid {
+    grid-template-columns:
+      1fr;
   }
 
 }
